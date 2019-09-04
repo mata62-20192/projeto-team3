@@ -4,23 +4,18 @@ import java.util.List;
 
 public class CursoDisciplina {
     private Long id;
-    private int semestre;
-    private String natureza;
-    private String nome;
+    private int semestre = -1;
     private Disciplina disciplina;
     private List<Disciplina> preRequisitos;
     private boolean isObrigatoria = false;
 
-    public CursoDisciplina(String natureza, String nome, Disciplina disciplina) {
-        this.natureza = natureza;
-        this.nome = nome;
+    public CursoDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
 
-    public CursoDisciplina(int semestre, String natureza, String nome) {
+    public CursoDisciplina(Disciplina disciplina, int semestre) {
+        this(disciplina);
         this.semestre = semestre;
-        this.natureza = natureza;
-        this.nome = nome;
         this.isObrigatoria = true;
     }
 
@@ -36,13 +31,6 @@ public class CursoDisciplina {
         return semestre;
     }
 
-    public String getNatureza() {
-        return natureza;
-    }
-
-    public String getNome() {
-        return nome;
-    }
 
     public Disciplina getDisciplina() {
         return disciplina;
@@ -54,5 +42,14 @@ public class CursoDisciplina {
 
     public boolean isObrigatoria() {
         return isObrigatoria;
+    }
+
+    @Override
+    public String toString() {
+        return "CursoDisciplina{" +
+                "semestre=" + semestre + " º"+
+                ", disciplina=" + disciplina +
+                ", isObrigatoria=" + isObrigatoria +
+                '}';
     }
 }

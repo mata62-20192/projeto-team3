@@ -1,5 +1,6 @@
 package br.ufba.team3.siac.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Universidade {
@@ -11,6 +12,8 @@ public class Universidade {
     public Universidade(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
+        this.cursos = new ArrayList<Curso>();
+        this.disciplinas = new ArrayList<Disciplina>();
     }
 
     public Universidade() {
@@ -32,4 +35,19 @@ public class Universidade {
         this.sigla = sigla;
     }
 
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCurso(Curso curso){
+        this.cursos.add(curso);
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Disciplina disciplina) {
+        this.disciplinas.add(disciplina);
+    }
 }

@@ -92,4 +92,16 @@ public class Curso {
     public List<CursoDisciplina> getDisciplinas() {
         return disciplinas;
     }
+
+    public void setDisciplina(CursoDisciplina cursoDisciplina){
+        this.disciplinas.add(cursoDisciplina);
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "nome='" + nome + '\'' +
+                ", disciplinas=" + disciplinas +
+                '}';
+    }
 }
