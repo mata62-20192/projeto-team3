@@ -12,6 +12,4 @@ public class Curso {
     private String baseLegal;
     private String descricaoProfissional;
     private List<CursoDisciplina> disciplinas;
-
-
 }
