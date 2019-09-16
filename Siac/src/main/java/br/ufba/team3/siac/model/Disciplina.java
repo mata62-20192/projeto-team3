@@ -1,5 +1,8 @@
 package br.ufba.team3.siac.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Disciplina {
     private Long id;
     private String nome;
@@ -9,12 +12,14 @@ public class Disciplina {
     private String objetivo;
     private String conteudo;
     private String bibliografia;
+    private List<Turma> turmas;
 
     public Disciplina(String nome, double cargaHorariaTeorica, double cargaHorariaPratica, double estagio) {
         this.nome = nome;
         this.cargaHorariaTeorica = cargaHorariaTeorica;
         this.cargaHorariaPratica = cargaHorariaPratica;
         this.estagio = estagio;
+        this.turmas = new ArrayList<Turma>();
     }
 
     public Long getId() {
@@ -79,6 +84,14 @@ public class Disciplina {
 
     public void setBibliografia(String bibliografia) {
         this.bibliografia = bibliografia;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Turma turma) {
+        this.turmas.add(turma);
     }
 
     @Override
