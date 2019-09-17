@@ -46,10 +46,13 @@ public class CursoDisciplina {
 
     @Override
     public String toString() {
-        return "CursoDisciplina{" +
-                "semestre=" + semestre + " º"+
-                ", disciplina=" + disciplina +
+        String str = "CursoDisciplina{";
+        if(isObrigatoria){
+            str += "semestre = " + semestre + ", ";
+        }
+        str += " disciplina=" + disciplina +
                 ", isObrigatoria=" + isObrigatoria +
                 '}';
+        return str;
     }
 }
