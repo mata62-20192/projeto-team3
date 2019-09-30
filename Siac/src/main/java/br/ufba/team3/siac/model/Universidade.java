@@ -1,15 +1,25 @@
 package br.ufba.team3.siac.model;
 
+
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Universidade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final Long id;
     private String nome;
     private String sigla;
+    @OneToMany(targetEntity = Curso.class, fetch=FetchType.LAZY)
     private List<Curso> cursos;
+    @OneToMany(targetEntity = Disciplina.class, fetch=FetchType.LAZY)
     private List<Disciplina> disciplinas;
 
     public Universidade(String nome, String sigla) {
+        this();
         this.nome = nome;
         this.sigla = sigla;
         this.cursos = new ArrayList<Curso>();
@@ -17,6 +27,7 @@ public class Universidade {
     }
 
     public Universidade() {
+        this.id = null;
     }
 
     public String getNome() {
@@ -39,7 +50,7 @@ public class Universidade {
         return cursos;
     }
 
-    public void setCurso(Curso curso){
+    public void addCurso(Curso curso){
         this.cursos.add(curso);
     }
 
@@ -47,7 +58,7 @@ public class Universidade {
         return disciplinas;
     }
 
-    public void setDisciplinas(Disciplina disciplina) {
+    public void addDisciplinas(Disciplina disciplina) {
         this.disciplinas.add(disciplina);
     }
 }

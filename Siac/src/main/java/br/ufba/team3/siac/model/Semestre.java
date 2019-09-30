@@ -1,9 +1,16 @@
 package br.ufba.team3.siac.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Date;
 
+@Entity
 public class Semestre {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String codigo;
     private Date inicioDoSemestre;
     private Date fimDoSemestre;
@@ -49,11 +56,11 @@ public class Semestre {
         isAtual = atual;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

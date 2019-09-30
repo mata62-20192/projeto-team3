@@ -1,20 +1,29 @@
 package br.ufba.team3.siac.model;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+@Entity
 public class Curso {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final Long id;
+    private String codigo;
     private String nome;
     private Turno turno;
-    private double duracaoMinima;
-    private double duracaoMaxima;
+    private BigDecimal duracaoMinima;
+    private BigDecimal duracaoMaxima;
     private String periodo;
     private String baseLegal;
     private String descricaoProfissional;
+    @OneToMany(targetEntity = CursoDisciplina.class, fetch=FetchType.LAZY)
     private List<CursoDisciplina> disciplinas;
 
-    public Curso(String nome, Turno turno, double duracaoMinima, double duracaoMaxima, String periodo, String baseLegal, String descricaoProfissional) {
+    public Curso(String nome, Turno turno, BigDecimal duracaoMinima, BigDecimal duracaoMaxima, String periodo, String baseLegal, String descricaoProfissional) {
+        this();
         this.nome = nome;
         this.turno = turno;
         this.duracaoMinima = duracaoMinima;
@@ -25,12 +34,19 @@ public class Curso {
         this.disciplinas = new ArrayList<>();
     }
 
-    public Long getId() {
-        return id;
+    public Curso(String codigo, String nome) {
+        this();
+        this.codigo = codigo;
+        this.nome = nome;
+        this.disciplinas = new ArrayList<CursoDisciplina>();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Curso() {
+        this.id = null;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -49,19 +65,19 @@ public class Curso {
         this.turno = turno;
     }
 
-    public double getDuracaoMinima() {
+    public BigDecimal getDuracaoMinima() {
         return duracaoMinima;
     }
 
-    public void setDuracaoMinima(double duracaoMinima) {
+    public void setDuracaoMinima(BigDecimal duracaoMinima) {
         this.duracaoMinima = duracaoMinima;
     }
 
-    public double getDuracaoMaxima() {
+    public BigDecimal getDuracaoMaxima() {
         return duracaoMaxima;
     }
 
-    public void setDuracaoMaxima(double duracaoMaxima) {
+    public void setDuracaoMaxima(BigDecimal duracaoMaxima) {
         this.duracaoMaxima = duracaoMaxima;
     }
 
@@ -87,6 +103,14 @@ public class Curso {
 
     public void setDescricaoProfissional(String descricaoProfissional) {
         this.descricaoProfissional = descricaoProfissional;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public List<CursoDisciplina> getDisciplinas() {

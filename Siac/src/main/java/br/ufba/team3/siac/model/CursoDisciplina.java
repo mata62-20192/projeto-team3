@@ -1,15 +1,25 @@
 package br.ufba.team3.siac.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class CursoDisciplina {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final Long id;
     private int semestre = -1;
     private Disciplina disciplina;
+    @OneToMany
     private List<Disciplina> preRequisitos;
     private boolean isObrigatoria = false;
 
+    public CursoDisciplina() {
+        this.id = null;
+    }
+
     public CursoDisciplina(Disciplina disciplina) {
+        this();
         this.disciplina = disciplina;
     }
 
@@ -55,4 +65,6 @@ public class CursoDisciplina {
                 '}';
         return str;
     }
+
+
 }

@@ -1,20 +1,30 @@
 package br.ufba.team3.siac.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Turma {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final Long id;
     private Professor professor;
+    @OneToMany(targetEntity = Aluno.class, fetch=FetchType.EAGER)
     private List<Aluno> alunos;
     private Semestre semestre;
-    private Disciplina disciplina;
+
 
     public Turma() {
+        this.id = null;
     }
 
-    public Turma(Professor professor, Semestre semestre, Disciplina disciplina) {
+    public Turma(Professor professor, Semestre semestre) {
+        this();
         this.professor = professor;
         this.semestre = semestre;
-        this.disciplina = disciplina;
+
+        this.alunos = new ArrayList<Aluno>();
     }
 
     public Professor getProfessor() {
@@ -41,11 +51,4 @@ public class Turma {
         this.semestre = semestre;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
 }

@@ -1,33 +1,54 @@
 package br.ufba.team3.siac.model;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Disciplina {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final Long id;
     private String nome;
-    private double cargaHorariaTeorica;
-    private double cargaHorariaPratica;
-    private double estagio;
+    private String codigoDisc;
+    private Integer cargaHorariaTotal;
     private String objetivo;
     private String conteudo;
     private String bibliografia;
-    private List<Turma> turmas;
+//    @OneToMany
+////    private List<Turma> turmas;
 
-    public Disciplina(String nome, double cargaHorariaTeorica, double cargaHorariaPratica, double estagio) {
+    private Disciplina(){
+        this.id = null;
+    }
+
+    public Disciplina(String nome, String codigoDisc, Integer cargaHorariaTotal) {
+        this();
         this.nome = nome;
-        this.cargaHorariaTeorica = cargaHorariaTeorica;
-        this.cargaHorariaPratica = cargaHorariaPratica;
-        this.estagio = estagio;
-        this.turmas = new ArrayList<Turma>();
+        this.codigoDisc = codigoDisc;
+        this.cargaHorariaTotal = cargaHorariaTotal;
+//        this.turmas = new ArrayList<Turma>();
+    }
+
+    public String getCodigoDisc() {
+        return codigoDisc;
+    }
+
+    public void setCodigoDisc(String codigoDisc) {
+        this.codigoDisc = codigoDisc;
+    }
+
+    public Integer getCargaHorariaTotal() {
+        return cargaHorariaTotal;
+    }
+
+    public void setCargaHorariaTotal(Integer cargaHorariaTotal) {
+        this.cargaHorariaTotal = cargaHorariaTotal;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -38,29 +59,6 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public double getCargaHorariaTeorica() {
-        return cargaHorariaTeorica;
-    }
-
-    public void setCargaHorariaTeorica(double cargaHorariaTeorica) {
-        this.cargaHorariaTeorica = cargaHorariaTeorica;
-    }
-
-    public double getCargaHorariaPratica() {
-        return cargaHorariaPratica;
-    }
-
-    public void setCargaHorariaPratica(double cargaHorariaPratica) {
-        this.cargaHorariaPratica = cargaHorariaPratica;
-    }
-
-    public double getEstagio() {
-        return estagio;
-    }
-
-    public void setEstagio(double estagio) {
-        this.estagio = estagio;
-    }
 
     public String getObjetivo() {
         return objetivo;
@@ -86,20 +84,12 @@ public class Disciplina {
         this.bibliografia = bibliografia;
     }
 
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
+//    public List<Turma> getTurmas() {
+//        return turmas;
+//    }
+//
+//    public void addTurmas(Turma turma) {
+//        this.turmas.add(turma);
+//    }
 
-    public void setTurmas(Turma turma) {
-        this.turmas.add(turma);
-    }
-
-    @Override
-    public String toString() {
-        return "Disciplina{" +
-                "nome='" + nome + '\'' +
-                ", cargaHorariaTeorica=" + cargaHorariaTeorica +
-                ", cargaHorariaPratica=" + cargaHorariaPratica +
-                '}';
-    }
 }
