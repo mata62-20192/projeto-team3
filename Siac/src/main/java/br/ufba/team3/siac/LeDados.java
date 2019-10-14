@@ -8,8 +8,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class LeDados {
+
     public void Leitura(Universidade universidade) throws FileNotFoundException {
-        File file = new File("dados.txt");
+        File file = new File("src/main/resources/dados.txt");
         Scanner input = new Scanner(file);
         int numCursos = input.nextInt();
         for (int i = 0; i < numCursos; i++) {
@@ -43,5 +44,4 @@ public class LeDados {
         }
         input.close();
     }
-
 }
