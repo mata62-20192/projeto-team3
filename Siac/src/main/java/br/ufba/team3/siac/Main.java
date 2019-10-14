@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("src/dados.txt");
+        File file = new File("dados.txt");
         Scanner input = new Scanner(file);
 
         Universidade universidade = new Universidade();
