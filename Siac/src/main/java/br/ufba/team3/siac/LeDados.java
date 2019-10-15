@@ -2,36 +2,40 @@ package br.ufba.team3.siac;
 
 import br.ufba.team3.siac.model.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class LeDados {
 
-    public void Leitura(Universidade universidade) throws FileNotFoundException {
-        File file = new File("src/main/resources/dados.txt");
-        Scanner input = new Scanner(file);
-        int numCursos = input.nextInt();
+    public void Leitura(Universidade universidade) throws IOException {
+        FileInputStream fis = null;
+        BufferedReader reader = null;
+        fis = new FileInputStream("dados.txt");
+        reader = new BufferedReader(new InputStreamReader(fis));
+
+        int numCursos = Integer.parseInt(reader.readLine());
         for (int i = 0; i < numCursos; i++) {
             // Le nome
-            input.skip("\n");
-            String nome = input.nextLine();
-            String codigo = input.nextLine();
-            int numDisciplinas = input.nextInt();
+            reader.skip(0);
+            String nome = reader.readLine();
+            String codigo = reader.readLine();
+            int numDisciplinas = Integer.parseInt(reader.readLine());
 
             Curso curso = new Curso(codigo, nome);
             universidade.addCurso(curso);
 
             for (int j = 0; j < numDisciplinas; j++) {
                 // ADMF52 1 OB 34 20102
-                input.skip("\n");
-                String nomeDisc = input.nextLine();
-                String codigoDisc = input.next();
-                int semestre = input.nextInt();
-                String natureza = input.next();
-                int ch = input.nextInt();
-                String curriculo = input.next();
+                reader.skip(0);
+                String nomeDisc = reader.readLine();
+                String dadosDisciplina = reader.readLine();
+                String disciplinaPalavras[] = dadosDisciplina.split(" ");
+                String codigoDisc = disciplinaPalavras[0];
+                int semestre = Integer.parseInt(disciplinaPalavras[1]);
+                String natureza = disciplinaPalavras[2];
+                int ch =  Integer.parseInt(disciplinaPalavras[3]);
+                String curriculo = disciplinaPalavras[4];
 
                 Disciplina disciplina = universidade.findDisciplina(codigoDisc);
                 if (disciplina == null) {
@@ -42,6 +46,7 @@ public class LeDados {
                 curso.addDisciplinaCurso(disciplinaCurso);
             }
         }
-        input.close();
+        reader.close();
+        fis.close();
     }
 }
