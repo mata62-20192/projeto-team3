@@ -1,27 +1,36 @@
 package br.ufba.team3.siac;
 
-import br.ufba.team3.siac.model.*;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class Main {
+import br.ufba.team3.siac.model.Universidade;
+import br.ufba.team3.siac.database.UniversidadeService;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.nio.file.Paths;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        FXMLLoader loader = new FXMLLoader(Paths.get("./src/main/resources/view/home.fxml").toUri().toURL());
+        Parent root = loader.load();
+        primaryStage.setTitle("New Siac");
+        primaryStage.setMaximized(true);
+        primaryStage.setScene(new Scene(root, 500, 600));
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-//        Universidade universidade = new Universidade("Universidade Federal da Bahia", "UFBA");
-//        Curso cienciaDaComputacao = new Curso("Ciencia da Computacao", Turno.MATUTINO, 8.0F, 12.0F, "2012.2", " ", " ");
-//        Curso sistemaDaInformacao = new Curso("Sistema de Informacao", Turno.MATUTINO, 8.0F, 12.0F, "2012.2", " ", " ");
-//        Curso licenciatura = new Curso("Licenciatura", Turno.MATUTINO, 8.0F, 12.0F, "2012.2", " ", " ");
-//        universidade.setCurso(cienciaDaComputacao);
-//        universidade.setCurso(sistemaDaInformacao);
-//        universidade.setCurso(licenciatura);
-//        Disciplina engenhariaDeSoft1 = new Disciplina("Engenharia de Software II (MATA63)", 34.0F, 34.0F, 0F);
-//        universidade.setDisciplinas(engenhariaDeSoft1);
-//        cienciaDaComputacao.setDisciplina(new CursoDisciplina(engenhariaDeSoft1, 6));
-//        sistemaDaInformacao.setDisciplina(new CursoDisciplina(engenhariaDeSoft1, 5));
-//        licenciatura.setDisciplina(new CursoDisciplina(engenhariaDeSoft1));
-//        System.out.println(cienciaDaComputacao);
-//        System.out.println(sistemaDaInformacao);
-//        System.out.println(licenciatura);
+        try{
+            UniversidadeService universidadeService = new UniversidadeService();
+            universidadeService.Leitura();
+            System.out.println(universidadeService.getAllCursos());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        launch(args);
     }
 }
