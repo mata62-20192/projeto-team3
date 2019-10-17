@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.151"
+            fx:controller="br.ufba.team3.siac.controller.HomeController">
+    <top>
+        <BorderPane styleClass="header-section">
+            <left>
+                <Button fx:id="homeTop" id="account" onAction="#home" text="New Siac 2019">
+                    <graphic>
+                        <ImageView fitHeight="42" fitWidth="42" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@logo.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </left>
+        </BorderPane>
+    </top>
+    <left>
+        <AnchorPane styleClass="sidebar-section">
+            <VBox>
+                <children>
+                    <Button styleClass="sidebar-button" fx:id="home" mnemonicParsing="false" onAction="#home"
+                            text="Home"/>
+                    <Button styleClass="sidebar-button" fx:id="addAluno" mnemonicParsing="false"
+                            onAction="#adicionarAluno" text="Adicionar Aluno"/>
+                    <Button styleClass="sidebar-button" fx:id="historicoAluno" onAction="#historicoAluno"
+                            mnemonicParsing="false" text="Histórico do Aluno"/>
+                    <Button styleClass="sidebar-button" fx:id="impressaoCurriculo" onAction="#impressaoCurriculo"
+                            mnemonicParsing="false" text="Impressão de Currículo"/>
+                </children>
+            </VBox>
+        </AnchorPane>
+    </left>
+    <center>
+        <VBox styleClass="content-section">
+            <children>
+                <Pane fx:id="secPane"/>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox id="footer-section">
+            <children>
+                <Label text="Copyright 2019 Team3"></Label>
+            </children>
+        </HBox>
+    </bottom>
+    <stylesheets>
+        <URL value="@demo.css"/>
+    </stylesheets>
+</BorderPane>
