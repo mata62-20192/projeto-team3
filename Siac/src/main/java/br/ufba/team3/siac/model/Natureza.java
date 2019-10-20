@@ -10,10 +10,6 @@ public enum Natureza {
         this.texto = texto;
     }
 
-    public String getTexto() {
-        return this.texto;
-    }
-
     public static Natureza fromString(String text) {
         for (Natureza b : Natureza.values()) {
             if (b.texto.equalsIgnoreCase(text)) {
@@ -21,5 +17,9 @@ public enum Natureza {
             }
         }
         return null;
+    }
+
+    public String getTexto() {
+        return this.texto;
     }
 }

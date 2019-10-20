@@ -23,14 +23,32 @@ public class Universidade {
         this.disciplinas.add(disciplina);
     }
 
-    public void addAluno(Aluno aluno){
+    public void addAluno(Aluno aluno) {
         this.alunos.add(aluno);
     }
 
-    public Disciplina findDisciplina(String codigoDisciplina){
-        for (Disciplina disciplina: this.disciplinas) {
-            if(disciplina.getCodigoDisciplina().equals(codigoDisciplina)){
+    public Disciplina findDisciplina(String codigoDisciplina) {
+        for (Disciplina disciplina : this.disciplinas) {
+            if (disciplina.getCodigoDisciplina().equals(codigoDisciplina)) {
                 return disciplina;
+            }
+        }
+        return null;
+    }
+
+    public Aluno findAluno(String matricula){
+        for (Aluno aluno: this.alunos) {
+            if (aluno.getMatricula().equals(matricula)) {
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    public Curso findCurso(String codigo){
+        for (Curso curso: this.cursos) {
+            if (curso.getCodigo().equals(codigo)) {
+                return curso;
             }
         }
         return null;

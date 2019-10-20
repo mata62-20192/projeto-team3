@@ -42,7 +42,7 @@
     -fx-max-width: 300px;
 }
 
-.sidebar-section Button:hover {
+.sidebar-section Button:hover, .student-section Button:hover {
     -fx-background-color: #25867d;
     -fx-text-fill: #ffffff;
 }
@@ -53,7 +53,7 @@
 
 }
 
-.selected{
+.selected {
     -fx-background-color: #25867d;
     -fx-text-fill: #ffffff;
 }
@@ -74,4 +74,40 @@
     -fx-padding: 10 10 10 10;
     -fx-border-width: 1;
     -fx-border-color: #E8E8E8 transparent transparent transparent;
+}
+
+
+
+.student-section HBox{
+    -fx-padding: 10 10 10 10;
+}
+
+.student-section Label{
+    -fx-padding: 0 10 0 0;
+}
+
+.student-section Button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-padding: 10 25 10 15;
+    -fx-border-width: 1;
+    -fx-border-color: #E8E8E8;
+    -fx-min-width: 200px;
+    -fx-pref-width: 200px;
+    -fx-max-width: 200px;
+}
+
+
+.error{
+    -fx-border-color: red;
+}
+
+.success{
+    -fx-background-color: #158000 !important;
+    -fx-border-color: green;
+}
+
+.error Button{
+    -fx-background-color: #ff1f00;
 }

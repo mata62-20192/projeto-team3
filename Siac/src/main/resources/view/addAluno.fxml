@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151" fx:controller="br.ufba.team3.siac.controller.AddAlunoController" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="138.0" layoutY="174.0" prefHeight="86.0" prefWidth="199.0" text="DAIANE ESTEVE AQUI" />
-   </children>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<AnchorPane styleClass="student-section" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.151"
+            fx:controller="br.ufba.team3.siac.controller.AddAlunoController">
+    <children>
+        <VBox>
+            <children>
+                <Label text="Adicionar novo aluno">
+                    <font>
+                        <Font name="System Bold" size="29.0"/>
+                    </font>
+                </Label>
+                <HBox>
+                    <children>
+                        <Label text="Curso*:"/>
+                        <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewCursos"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Nome*:"/>
+                        <TextField fx:id="nome"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Senha*:"/>
+                        <TextField fx:id="senha" prefWidth="172.0"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Matricula*:"/>
+                        <TextField fx:id="matricula"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
+                                text="Salvar"/>
+                        <Button fx:id="limparAdicaoAluno" mnemonicParsing="false" text="Limpar"/>
+                    </children>
+                </HBox>
+                <Label fx:id="successError" text=""/>
+            </children>
+        </VBox>
+    </children>
+    <stylesheets>
+        <URL value="@demo.css"/>
+    </stylesheets>
 </AnchorPane>
+

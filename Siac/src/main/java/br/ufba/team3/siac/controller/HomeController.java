@@ -5,10 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,11 +45,11 @@ public class HomeController implements Initializable {
         this.criarNovaCena("./src/main/resources/view/impressaoCurriculo.fxml", this.impressaoCurriculo);
     }
 
-    public void loadFxml (ActionEvent event) throws IOException {
+    public void loadFxml(ActionEvent event) throws IOException {
 
     }
 
-    public void selectButton(Button button){
+    public void selectButton(Button button) {
         this.addAluno.getStyleClass().remove("selected");
         this.historicoAluno.getStyleClass().remove("selected");
         this.impressaoCurriculo.getStyleClass().remove("selected");
@@ -62,11 +61,11 @@ public class HomeController implements Initializable {
         this.criarNovaCena("./src/main/resources/view/historicoAluno.fxml", this.historicoAluno);
     }
 
-    public void criarNovaCena(String caminho, Button button){
+    public void criarNovaCena(String caminho, Button button) {
         try {
             FXMLLoader loader = new FXMLLoader(Paths.get(caminho).toUri().toURL());
             Pane newPane = loader.load();
-            List<Node> parentChildren = ((Pane)secPane.getParent()).getChildren();
+            List<Node> parentChildren = ((Pane) secPane.getParent()).getChildren();
             parentChildren.set(parentChildren.indexOf(secPane), newPane);
             secPane = newPane;
             this.selectButton(button);

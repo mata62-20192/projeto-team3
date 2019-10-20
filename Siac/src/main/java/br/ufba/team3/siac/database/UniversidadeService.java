@@ -2,7 +2,6 @@ package br.ufba.team3.siac.database;
 
 import br.ufba.team3.siac.model.*;
 
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class UniversidadeService {
         FileInputStream fis = null;
         BufferedReader reader = null;
         fis = new FileInputStream("src/main/java/br/ufba/team3/siac/database/dados.txt");
-        reader = new BufferedReader(new InputStreamReader(fis));
+        reader = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
         int numCursos = Integer.parseInt(reader.readLine());
         for (int i = 0; i < numCursos; i++) {
@@ -39,7 +38,7 @@ public class UniversidadeService {
                 String codigoDisc = disciplinaPalavras[0];
                 int semestre = Integer.parseInt(disciplinaPalavras[1]);
                 String natureza = disciplinaPalavras[2];
-                int ch =  Integer.parseInt(disciplinaPalavras[3]);
+                int ch = Integer.parseInt(disciplinaPalavras[3]);
                 String curriculo = disciplinaPalavras[4];
 
                 Disciplina disciplina = this.universidade.findDisciplina(codigoDisc);
@@ -55,7 +54,23 @@ public class UniversidadeService {
         fis.close();
     }
 
-    public List<Curso> getAllCursos(){
+    public List<Curso> getAllCursos() {
         return universidade.getCursos();
+    }
+
+    public Curso findCurso(String codigo){
+        return universidade.findCurso(codigo);
+    }
+
+    public void addAluno(String nome, String matricula, String senha, Curso curso){
+        universidade.addAluno(new Aluno(matricula, nome, senha, curso));
+    }
+
+    public Aluno findAluno(String matricula){
+        return this.universidade.findAluno(matricula);
+    }
+
+    public Universidade getUniversidade() {
+        return universidade;
     }
 }
