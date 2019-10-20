@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
+    <meta content="text/html" charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <title>Curriculo | $titulo</title>
+    <style>
+        thead{
+            background-color: #25867d !important;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Curriculo do Curso : $titulo</h1>
-    <table>
-        <tr>
-            <th>Semestre</th>
-            <th>Natureza</th>
-            <th>Código</th>
-            <th>Disciplina</th>
-            <th>Pré Requisito</th>
-        </tr>
-        $dados
-    </table>
-    <p>Legenda Naturezas:</p>
-    <p>OB - Obrigatória</p>
-    <p>OP - Optativa</p>
+<h1>Curriculo do Curso:</h1>
+<h2>$titulo</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Semestre</th>
+        <th scope="col">Natureza</th>
+        <th scope="col">Código</th>
+        <th scope="col">Disciplina</th>
+        <th scope="col">Pré Requisito</th>
+    </tr>
+    </thead>
+    $dados
+</table>
+</div>
+<p>Legenda Naturezas:</p>
+<p>OB - Obrigatória</p>
+<p>OP - Optativa</p>
+
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
