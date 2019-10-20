@@ -52,7 +52,7 @@ public class AddAlunoController implements Initializable {
         this.senha.getStyleClass().remove("error");
         this.matricula.getStyleClass().remove("error");
         this.minhaListViewCursos.getStyleClass().remove("error");
-        if(!checkErrosForms()){
+        if (!checkErrosForms()) {
             String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Curso cursoSelecionado = Main.findCurso(codigo);
             String nome = this.nome.getText();
@@ -66,7 +66,7 @@ public class AddAlunoController implements Initializable {
         }
     }
 
-    public void limparDados(){
+    public void limparDados() {
         this.matricula.clear();
         this.senha.clear();
         this.nome.clear();
@@ -77,12 +77,12 @@ public class AddAlunoController implements Initializable {
         this.minhaListViewCursos.getStyleClass().remove("error");
     }
 
-    public void limparDadosCompleto(){
+    public void limparDadosCompleto() {
         this.limparDados();
         this.successError.setText("");
     }
 
-    public boolean checkErrosForms(){
+    public boolean checkErrosForms() {
         boolean check = false;
         if (nome.getText().trim().isEmpty()) {
             this.successError.setText("O aluno não foi adicionado com sucesso");
@@ -100,12 +100,12 @@ public class AddAlunoController implements Initializable {
             this.successError.setText(this.successError.getText() + "\nMatricula não preenchida");
             check = true;
         }
-        if(minhaListViewCursos.getSelectionModel().getSelectedItem() == null){
+        if (minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {
             this.minhaListViewCursos.getStyleClass().add("error");
             this.successError.setText(this.successError.getText() + "\nCurso não selecionado");
             check = true;
         }
-        if(Main.findAluno(this.matricula.getText()) != null){
+        if (Main.findAluno(this.matricula.getText()) != null) {
             this.minhaListViewCursos.getStyleClass().add("error");
             this.successError.setText(this.successError.getText() + "\nAluno já existe. Matricula repetida");
             check = true;

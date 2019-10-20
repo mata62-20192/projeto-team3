@@ -36,8 +36,8 @@ public class Universidade {
         return null;
     }
 
-    public Aluno findAluno(String matricula){
-        for (Aluno aluno: this.alunos) {
+    public Aluno findAluno(String matricula) {
+        for (Aluno aluno : this.alunos) {
             if (aluno.getMatricula().equals(matricula)) {
                 return aluno;
             }
@@ -45,8 +45,8 @@ public class Universidade {
         return null;
     }
 
-    public Curso findCurso(String codigo){
-        for (Curso curso: this.cursos) {
+    public Curso findCurso(String codigo) {
+        for (Curso curso : this.cursos) {
             if (curso.getCodigo().equals(codigo)) {
                 return curso;
             }

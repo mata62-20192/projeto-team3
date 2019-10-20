@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class UniversidadeService {
         FileInputStream fis = null;
         BufferedReader reader = null;
         fis = new FileInputStream("src/main/java/br/ufba/team3/siac/database/dados.txt");
-        reader = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+        reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
 
         int numCursos = Integer.parseInt(reader.readLine());
         for (int i = 0; i < numCursos; i++) {
@@ -34,7 +35,7 @@ public class UniversidadeService {
                 reader.skip(0);
                 String nomeDisc = reader.readLine();
                 String dadosDisciplina = reader.readLine();
-                String disciplinaPalavras[] = dadosDisciplina.split(" ");
+                String[] disciplinaPalavras = dadosDisciplina.split(" ");
                 String codigoDisc = disciplinaPalavras[0];
                 int semestre = Integer.parseInt(disciplinaPalavras[1]);
                 String natureza = disciplinaPalavras[2];
@@ -58,15 +59,15 @@ public class UniversidadeService {
         return universidade.getCursos();
     }
 
-    public Curso findCurso(String codigo){
+    public Curso findCurso(String codigo) {
         return universidade.findCurso(codigo);
     }
 
-    public void addAluno(String nome, String matricula, String senha, Curso curso){
+    public void addAluno(String nome, String matricula, String senha, Curso curso) {
         universidade.addAluno(new Aluno(matricula, nome, senha, curso));
     }
 
-    public Aluno findAluno(String matricula){
+    public Aluno findAluno(String matricula) {
         return this.universidade.findAluno(matricula);
     }
 

@@ -31,19 +31,19 @@ public class Main extends Application {
         return universidadeService.getAllCursos();
     }
 
-    public static Curso findCurso(String codigo){
+    public static Curso findCurso(String codigo) {
         return universidadeService.findCurso(codigo);
     }
 
-    public static Aluno findAluno(String matricula){
+    public static Aluno findAluno(String matricula) {
         return universidadeService.findAluno(matricula);
     }
 
-    public static void addAluno(String nome, String matricula, String senha, Curso curso){
+    public static void addAluno(String nome, String matricula, String senha, Curso curso) {
         universidadeService.addAluno(nome, matricula, senha, curso);
     }
 
-    public static Universidade getUniversidade(){
+    public static Universidade getUniversidade() {
         return universidadeService.getUniversidade();
     }
 
@@ -53,8 +53,8 @@ public class Main extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("New Siac");
         primaryStage.setMaximized(true);
-        primaryStage.setMinWidth(800);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(1000);
+        primaryStage.setMinHeight(800);
         primaryStage.setScene(new Scene(root, 500, 600));
         primaryStage.show();
     }
