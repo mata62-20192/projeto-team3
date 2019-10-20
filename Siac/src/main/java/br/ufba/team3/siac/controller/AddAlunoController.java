@@ -71,27 +71,30 @@ public class AddAlunoController implements Initializable {
     public boolean checkErrosForms(){
         boolean check = false;
         if (nome.getText().trim().isEmpty()) {
+            this.successError.setText("O aluno não foi adicionado com sucesso");
             this.nome.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nNome não preenchido");
             check = true;
         }
         if (senha.getText().trim().isEmpty()) {
             this.senha.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nSenha não preenchida");
             check = true;
         }
         if (matricula.getText().trim().isEmpty()) {
             matricula.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nMatricula não preenchida");
             check = true;
         }
-        if(minhaListViewCursos.getSelectionModel().getSelectedItem().isEmpty()){
+        if(minhaListViewCursos.getSelectionModel().getSelectedItem() == null){
             this.minhaListViewCursos.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nCurso não selecionado");
             check = true;
         }
         if(Main.findAluno(this.matricula.getText()) != null){
             this.minhaListViewCursos.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nAluno já existe. Matricula repetida");
             check = true;
-        }
-        if(check){
-            this.successError.setText("O aluno não foi adicionado com sucesso");
         }
         return check;
     }
