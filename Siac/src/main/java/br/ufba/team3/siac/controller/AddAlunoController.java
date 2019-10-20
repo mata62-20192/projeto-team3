@@ -59,13 +59,18 @@ public class AddAlunoController implements Initializable {
             String matricula = this.matricula.getText();
             String senha = this.senha.getText();
             Main.addAluno(nome, matricula, senha, cursoSelecionado);
-            this.matricula.clear();
-            this.senha.clear();
-            this.nome.clear();
+            this.limparDados();
             this.minhaListViewCursos.getSelectionModel().clearSelection();
             this.successError.setText("O aluno foi adicionado com sucesso");
             System.out.println(Main.getUniversidade().getAlunos());
         }
+    }
+
+    public void limparDados(){
+        this.matricula.clear();
+        this.senha.clear();
+        this.nome.clear();
+        this.minhaListViewCursos.getSelectionModel().clearSelection();
     }
 
     public boolean checkErrosForms(){

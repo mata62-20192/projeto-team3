@@ -42,7 +42,7 @@
                     <children>
                         <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
                                 text="Salvar"/>
-                        <Button fx:id="limparAdicaoAluno" mnemonicParsing="false" text="Limpar"/>
+                        <Button fx:id="limparAdicaoAluno"  onAction="#limparDados" mnemonicParsing="false" text="Limpar"/>
                     </children>
                 </HBox>
                 <Label fx:id="successError" text=""/>
