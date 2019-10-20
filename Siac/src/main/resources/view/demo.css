@@ -1,0 +1,113 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-color: #ffffff;
+}
+
+.header-section {
+    -fx-padding: 10px;
+    -fx-font-size: 20px;
+    -fx-background-color: #25867d;
+}
+
+.header-section Label {
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px;
+}
+
+#account {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.sidebar-section {
+    -fx-min-width: 300px;
+    -fx-pref-width: 300px;
+    -fx-max-width: 300px;
+    -fx-border-width: 1;
+    -fx-border-color: transparent #E8E8E8 transparent transparent;
+}
+
+.sidebar-section Button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-padding: 10 15 10 15;
+    -fx-border-width: 1;
+    -fx-border-color: transparent transparent #E8E8E8 transparent;
+    -fx-min-width: 300px;
+    -fx-pref-width: 300px;
+    -fx-max-width: 300px;
+}
+
+.sidebar-section Button:hover, .student-section Button:hover {
+    -fx-background-color: #25867d;
+    -fx-text-fill: #ffffff;
+}
+
+.content-section {
+    -fx-padding: 10 20 10 20;
+    -fx-wrap-text: true;
+
+}
+
+.selected {
+    -fx-background-color: #25867d;
+    -fx-text-fill: #ffffff;
+}
+
+#content-header {
+    -fx-font-size: 18px;
+    -fx-padding: 0 0 10 0;
+    -fx-font-weight: 700;
+}
+
+#content {
+    -fx-wrap-text: true;
+    -fx-font-size: 16px;
+}
+
+#footer-section {
+    -fx-alignment: center;
+    -fx-padding: 10 10 10 10;
+    -fx-border-width: 1;
+    -fx-border-color: #E8E8E8 transparent transparent transparent;
+}
+
+
+
+.student-section HBox{
+    -fx-padding: 10 10 10 10;
+}
+
+.student-section Label{
+    -fx-padding: 0 10 0 0;
+}
+
+.student-section Button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-padding: 10 25 10 15;
+    -fx-border-width: 1;
+    -fx-border-color: #E8E8E8;
+    -fx-min-width: 200px;
+    -fx-pref-width: 200px;
+    -fx-max-width: 200px;
+}
+
+
+.error{
+    -fx-border-color: red;
+}
+
+.success{
+    -fx-background-color: #158000 !important;
+    -fx-border-color: green;
+}
+
+.error Button{
+    -fx-background-color: #ff1f00;
+}

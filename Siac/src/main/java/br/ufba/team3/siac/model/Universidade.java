@@ -5,49 +5,77 @@ import java.util.List;
 
 public class Universidade {
     private String nome;
-    private String sigla;
     private List<Curso> cursos;
     private List<Disciplina> disciplinas;
-
-    public Universidade(String nome, String sigla) {
-        this.nome = nome;
-        this.sigla = sigla;
-        this.cursos = new ArrayList<Curso>();
-        this.disciplinas = new ArrayList<Disciplina>();
-    }
+    private List<Aluno> alunos;
 
     public Universidade() {
+        this.cursos = new ArrayList<Curso>();
+        this.disciplinas = new ArrayList<Disciplina>();
+        this.alunos = new ArrayList<Aluno>();
+    }
+
+    public void addCurso(Curso curso) {
+        this.cursos.add(curso);
+    }
+
+    public void addDisciplina(Disciplina disciplina) {
+        this.disciplinas.add(disciplina);
+    }
+
+    public void addAluno(Aluno aluno) {
+        this.alunos.add(aluno);
+    }
+
+    public Disciplina findDisciplina(String codigoDisciplina) {
+        for (Disciplina disciplina : this.disciplinas) {
+            if (disciplina.getCodigoDisciplina().equals(codigoDisciplina)) {
+                return disciplina;
+            }
+        }
+        return null;
+    }
+
+    public Aluno findAluno(String matricula){
+        for (Aluno aluno: this.alunos) {
+            if (aluno.getMatricula().equals(matricula)) {
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    public Curso findCurso(String codigo){
+        for (Curso curso: this.cursos) {
+            if (curso.getCodigo().equals(codigo)) {
+                return curso;
+            }
+        }
+        return null;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
     public List<Curso> getCursos() {
         return cursos;
-    }
-
-    public void setCurso(Curso curso){
-        this.cursos.add(curso);
     }
 
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public void setDisciplinas(Disciplina disciplina) {
-        this.disciplinas.add(disciplina);
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    @Override
+    public String toString() {
+        return "Universidade{" +
+                "nome='" + nome + '\'' +
+                ", cursos=" + cursos +
+                ", disciplinas=" + disciplinas +
+                '}';
     }
 }
