@@ -1,6 +1,7 @@
 package br.ufba.team3.siac.controller;
 
 import br.ufba.team3.siac.Main;
+import br.ufba.team3.siac.model.Aluno;
 import br.ufba.team3.siac.model.Curso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class AddAlunoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Curso> cursos = Main.getAllCursos();
+        List<Curso> cursos = Main.getUniversidade().getCursos();
         for (Curso curso : cursos) {
             minhaListViewCursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
         }
@@ -54,11 +55,11 @@ public class AddAlunoController implements Initializable {
         this.minhaListViewCursos.getStyleClass().remove("error");
         if(!checkErrosForms()){
             String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
-            Curso cursoSelecionado = Main.findCurso(codigo);
+            Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
             String nome = this.nome.getText();
             String matricula = this.matricula.getText();
             String senha = this.senha.getText();
-            Main.addAluno(nome, matricula, senha, cursoSelecionado);
+            Main.getUniversidade().addAluno(new Aluno(matricula,nome, senha, cursoSelecionado));
             this.matricula.clear();
             this.senha.clear();
             this.nome.clear();
@@ -72,22 +73,28 @@ public class AddAlunoController implements Initializable {
         boolean check = false;
         if (nome.getText().trim().isEmpty()) {
             this.nome.getStyleClass().add("error");
+            this.successError.setText("O aluno não foi adicionado com sucesso");
+            this.successError.setText(this.successError.getText() + "\nsem nome");
             check = true;
         }
         if (senha.getText().trim().isEmpty()) {
             this.senha.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nsem senha");
             check = true;
         }
         if (matricula.getText().trim().isEmpty()) {
             matricula.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nsem matricula");
             check = true;
         }
         if(minhaListViewCursos.getSelectionModel().getSelectedItem().isEmpty()){
             this.minhaListViewCursos.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nsem curso selecionado");
             check = true;
         }
-        if(Main.findAluno(this.matricula.getText()) != null){
+        if(Main.getUniversidade().findAluno(this.matricula.getText()) != null){
             this.minhaListViewCursos.getStyleClass().add("error");
+            this.successError.setText(this.successError.getText() + "\nmatricula repetida");
             check = true;
         }
         if(check){

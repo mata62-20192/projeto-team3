@@ -27,22 +27,6 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static List<Curso> getAllCursos() {
-        return universidadeService.getAllCursos();
-    }
-
-    public static Curso findCurso(String codigo){
-        return universidadeService.findCurso(codigo);
-    }
-
-    public static Aluno findAluno(String matricula){
-        return universidadeService.findAluno(matricula);
-    }
-
-    public static void addAluno(String nome, String matricula, String senha, Curso curso){
-        universidadeService.addAluno(nome, matricula, senha, curso);
-    }
-
     public static Universidade getUniversidade(){
         return universidadeService.getUniversidade();
     }
