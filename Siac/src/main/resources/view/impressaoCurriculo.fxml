@@ -3,9 +3,39 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<AnchorPane styleClass="student-section" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufba.team3.siac.controller.CurriculoController"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.151">
     <children>
-        <Label layoutX="138.0" layoutY="174.0" prefHeight="86.0" prefWidth="199.0" text="DAIANE ESTEVE AQUI 3"/>
+        <VBox>
+            <children>
+                <Label text="Impressão Currículo do Curso">
+                    <font>
+                        <Font name="System Bold" size="29.0"/>
+                    </font>
+                </Label>
+                <HBox>
+                    <children>
+                        <Label text="Curso*:"/>
+                        <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewCursos"/>
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Button fx:id="imprimir" onAction="#imprimir"  mnemonicParsing="false" text="Salvar Curriculo"/>
+                    </children>
+                </HBox>
+                <Label fx:id="successError" text=""/>
+            </children>
+        </VBox>
     </children>
+    <stylesheets>
+        <URL value="@demo.css"/>
+    </stylesheets>
 </AnchorPane>

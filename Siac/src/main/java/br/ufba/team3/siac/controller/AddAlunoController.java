@@ -71,6 +71,15 @@ public class AddAlunoController implements Initializable {
         this.senha.clear();
         this.nome.clear();
         this.minhaListViewCursos.getSelectionModel().clearSelection();
+        this.nome.getStyleClass().remove("error");
+        this.senha.getStyleClass().remove("error");
+        this.matricula.getStyleClass().remove("error");
+        this.minhaListViewCursos.getStyleClass().remove("error");
+    }
+
+    public void limparDadosCompleto(){
+        this.limparDados();
+        this.successError.setText("");
     }
 
     public boolean checkErrosForms(){

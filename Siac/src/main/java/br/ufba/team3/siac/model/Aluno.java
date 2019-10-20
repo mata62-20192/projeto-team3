@@ -3,8 +3,8 @@ package br.ufba.team3.siac.model;
 import java.util.Objects;
 
 public class Aluno {
-    String matricula;
-    String nome;
+    private final String matricula;
+    private final String nome;
     String senha;
     Curso curso;
 

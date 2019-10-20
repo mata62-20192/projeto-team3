@@ -31,4 +31,12 @@ public class DisciplinaCurso {
     public Natureza getNatureza() {
         return natureza;
     }
+
+    @Override
+    public String toString() {
+        return disciplina.getCodigoDisciplina() + " , " +
+                disciplina.getNomeDisciplina() + " , " +
+                disciplina.getCargaHoraria();
+
+    }
 }
