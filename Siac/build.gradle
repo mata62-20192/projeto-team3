@@ -1,5 +1,6 @@
 group 'engsof-team3'
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -15,4 +16,13 @@ dependencies {
     compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
     compile 'com.gluonhq:ignite-guice:1.0.1'
     compile "commons-io:commons-io:+"
+}
+
+//sourceSets.main.java.srcDirs = ['src']
+mainClassName = "br.ufba.team3.siac.Main"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'br.ufba.team3.siac.Main'
+    }
 }
