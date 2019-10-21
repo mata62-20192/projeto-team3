@@ -5,14 +5,24 @@ import java.util.Objects;
 public class Aluno {
     private final String matricula;
     private final String nome;
-    String senha;
-    Curso curso;
+    private final String senha;
+    private final Curso curso;
+    private Historico historico;
 
     public Aluno(String matricula, String nome, String senha, Curso curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
         this.curso = curso;
+        this.historico = new Historico();
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public Historico getHistorico() {
+        return historico;
     }
 
     public String getMatricula() {

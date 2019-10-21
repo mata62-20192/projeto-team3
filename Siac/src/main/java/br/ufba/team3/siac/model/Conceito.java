@@ -1,17 +1,20 @@
 package br.ufba.team3.siac.model;
 
-public enum Natureza {
-    OBRIGATORIO("OB"),
-    OPTATIVO("OP");
+public enum Conceito {
+    APROVADO("A"),
+    REPROVADOPORNOTA("RPN"),
+    REPROVADOPORFALTA("RPF"),
+    DISPENSA("D"),
+    TRANCAMENTO("T");
 
     private final String texto;
 
-    Natureza(String texto) {
+    Conceito(String texto) {
         this.texto = texto;
     }
 
-    public static Natureza fromString(String text) {
-        for (Natureza b : Natureza.values()) {
+    public static Conceito fromString(String text) {
+        for (Conceito b : Conceito.values()) {
             if (b.texto.equalsIgnoreCase(text)) {
                 return b;
             }

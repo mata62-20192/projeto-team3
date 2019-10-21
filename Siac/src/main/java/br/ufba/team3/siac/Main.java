@@ -1,6 +1,7 @@
 package br.ufba.team3.siac;
 
 
+import br.ufba.team3.siac.database.AlunoService;
 import br.ufba.team3.siac.database.UniversidadeService;
 import br.ufba.team3.siac.model.Aluno;
 import br.ufba.team3.siac.model.Curso;
@@ -16,31 +17,18 @@ import java.util.List;
 
 public class Main extends Application {
 
-    static UniversidadeService universidadeService = new UniversidadeService();
+    private final static UniversidadeService universidadeService = new UniversidadeService();
 
     public static void main(String[] args) {
         try {
             universidadeService.Leitura();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            AlunoService alunoService = new AlunoService();
+            alunoService.criarAlunos();
         }
         launch(args);
-    }
-
-    public static List<Curso> getAllCursos() {
-        return universidadeService.getAllCursos();
-    }
-
-    public static Curso findCurso(String codigo) {
-        return universidadeService.findCurso(codigo);
-    }
-
-    public static Aluno findAluno(String matricula) {
-        return universidadeService.findAluno(matricula);
-    }
-
-    public static void addAluno(String nome, String matricula, String senha, Curso curso) {
-        universidadeService.addAluno(nome, matricula, senha, curso);
     }
 
     public static Universidade getUniversidade() {

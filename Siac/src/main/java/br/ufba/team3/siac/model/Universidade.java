@@ -5,17 +5,18 @@ import java.util.List;
 
 public class Universidade {
     private String nome;
-    private List<Curso> cursos;
-    private List<Disciplina> disciplinas;
-    private List<Aluno> alunos;
+    private final List<Curso> cursos;
+    private final List<Disciplina> disciplinas;
+    private final List<Aluno> alunos;
 
     public Universidade() {
-        this.cursos = new ArrayList<Curso>();
-        this.disciplinas = new ArrayList<Disciplina>();
-        this.alunos = new ArrayList<Aluno>();
+        this.cursos = new ArrayList<>();
+        this.disciplinas = new ArrayList<>();
+        this.alunos = new ArrayList<>();
     }
 
     public void addCurso(Curso curso) {
+        curso.setCurriculo(new Curriculo(curso));
         this.cursos.add(curso);
     }
 

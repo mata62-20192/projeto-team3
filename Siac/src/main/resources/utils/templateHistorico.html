@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta content="text/html" charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <title>Histórico do Aluno | $nome</title>
+    <style>
+        thead{
+            background-color: #25867d !important;
+            color: white;
+        }
+        h1{
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 2rem;
+        }
+        .card{
+            margin: 2rem;
+        }
+        .flex{
+            display: flex;
+            margin: 2rem 0;
+        }
+        .flex-item{
+            margin: 0 2rem;
+        }
+    </style>
+</head>
+<body>
+<h1>COMPONENTES CURRICULARES CURSADOS</h1>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">$matricula - $nome</h5>
+        <h6 class="card-subtitle mb-2 text-muted">$curso</h6>
+        <p class="card-text">CR: $cr</p>
+        <p class="card-text">Carga Horária Total: $cargaHorariaTotal</p>
+
+    </div>
+</div>
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th class="text-center" scope="col">Semestre</th>
+        <th scope="col">Disciplina</th>
+        <th class="text-center" scope="col">Natureza</th>
+        <th class="text-center" scope="col">Carga Horária</th>
+        <th class="text-center" scope="col">Nota</th>
+        <th class="text-center" scope="col">Resultado</th>
+    </tr>
+    </thead>
+    $dados
+</table>
+</div>
+<div class="flex">
+    <div class="flex-item"><p>Legenda Naturezas:</p>
+        <p>OB - Obrigatória</p>
+        <p>OP - Optativa</p></div>
+    <div>
+        <p>Legenda Resultado:</p>
+        <p>A - Aprovado</p>
+        <p>RPN - Reprovado por nota</p>
+        <p>RPF - Reprovado por falta</p>
+        <p>D - Dispensa</p>
+        <p>T - Trancamento</p>
+    </div>
+</div>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

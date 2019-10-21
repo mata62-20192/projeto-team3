@@ -4,17 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
-    private String codigo;
-    private String nome;
-    private List<DisciplinaCurso> disciplinasCurso;
-
-    public Curso() {
-    }
+    private final String codigo;
+    private final String nome;
+    private final List<DisciplinaCurso> disciplinasCurso;
+    private Curriculo curriculo;
 
     public Curso(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
         this.disciplinasCurso = new ArrayList<>();
+    }
+
+    public Curriculo getCurriculo() {
+        return this.curriculo;
+    }
+
+    public void setCurriculo(Curriculo curriculo) {
+        this.curriculo = curriculo;
     }
 
     public String getCodigo() {
@@ -31,5 +37,14 @@ public class Curso {
 
     public List<DisciplinaCurso> getDisciplinasCurso() {
         return disciplinasCurso;
+    }
+
+    public DisciplinaCurso findDisciplinaCurso(String codigoDisciplina){
+        for (DisciplinaCurso disciplinaCurso : this.disciplinasCurso) {
+            if (disciplinaCurso.getDisciplina().getCodigoDisciplina().equals(codigoDisciplina)) {
+                return disciplinaCurso;
+            }
+        }
+        return null;
     }
 }

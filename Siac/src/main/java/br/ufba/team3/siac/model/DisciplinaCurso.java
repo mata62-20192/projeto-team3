@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DisciplinaCurso {
-    private Disciplina disciplina;
-    private int semestre;
-    private HashSet<Disciplina> preRequisitos;
-    private Natureza natureza;
+    private final Disciplina disciplina;
+    private final int semestre;
+    private final HashSet<Disciplina> preRequisitos;
+    private final Natureza natureza;
 
     public DisciplinaCurso(Disciplina disciplina, int semestre, HashSet<Disciplina> preRequisitos, Natureza natureza) {
         this.disciplina = disciplina;
@@ -39,4 +39,6 @@ public class DisciplinaCurso {
                 disciplina.getCargaHoraria();
 
     }
+
+
 }

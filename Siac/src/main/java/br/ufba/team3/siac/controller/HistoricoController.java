@@ -1,6 +1,7 @@
 package br.ufba.team3.siac.controller;
 
 import br.ufba.team3.siac.Main;
+import br.ufba.team3.siac.model.Aluno;
 import br.ufba.team3.siac.model.Curso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,9 +18,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CurriculoController implements Initializable {
+public class HistoricoController implements Initializable {
     @FXML
-    private ListView<String> minhaListViewCursos;
+    private ListView<String> minhaListViewAlunos;
 
     @FXML
     private Button imprimir;
@@ -30,19 +31,19 @@ public class CurriculoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Curso> cursos = Main.getUniversidade().getCursos();
-        for (Curso curso : cursos) {
-            minhaListViewCursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
+        List<Aluno> alunos = Main.getUniversidade().getAlunos();
+        for (Aluno aluno : alunos) {
+            minhaListViewAlunos.getItems().add(aluno.getMatricula() + " - " + aluno.getNome());
         }
     }
 
     @FXML
     public void imprimir(ActionEvent event)  {
         this.successError.setText("");
-        this.minhaListViewCursos.getStyleClass().remove("error");
-        if (this.minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {
+        this.minhaListViewAlunos.getStyleClass().remove("error");
+        if (this.minhaListViewAlunos.getSelectionModel().getSelectedItem() == null) {
             this.successError.setText("É preciso escolher um curso válido");
-            this.minhaListViewCursos.getStyleClass().addAll("error");
+            this.minhaListViewAlunos.getStyleClass().addAll("error");
         } else {
             this.FileChooser();
         }
@@ -59,7 +60,7 @@ public class CurriculoController implements Initializable {
         if (file != null) {
             SalvarArquivo(file);
             this.successError.setText("O arquivo foi salvo com sucesso");
-            this.minhaListViewCursos.getStyleClass().remove("error");
+            this.minhaListViewAlunos.getStyleClass().remove("error");
         }
     }
 
@@ -67,12 +68,12 @@ public class CurriculoController implements Initializable {
         try {
             String conteudo;
             FileWriter leitorDeArquivo;
-            String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
-            Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
+            String codigo = this.minhaListViewAlunos.getSelectionModel().getSelectedItem().split(" - ")[0];
+            Aluno alunoSelecionado = Main.getUniversidade().findAluno(codigo);
             if (arquivo.getAbsolutePath().contains(".html")) {
-                conteudo = cursoSelecionado.getCurriculo().imprimirHTML();
+                conteudo = alunoSelecionado.getHistorico().imprimirHTML(alunoSelecionado);
             } else {
-                conteudo = cursoSelecionado.getCurriculo().imprimirTXT();
+                conteudo = alunoSelecionado.getHistorico().imprimirTXT(alunoSelecionado);
             }
             leitorDeArquivo = new FileWriter(arquivo);
             leitorDeArquivo.write(conteudo);
@@ -81,5 +82,4 @@ public class CurriculoController implements Initializable {
             e.printStackTrace();
         }
     }
-
 }

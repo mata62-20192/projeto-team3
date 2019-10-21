@@ -11,18 +11,17 @@ import java.util.HashSet;
 import java.util.List;
 
 public class UniversidadeService {
-    Universidade universidade = new Universidade();
+    private final Universidade universidade = new Universidade();
 
     public void Leitura() throws IOException {
-        FileInputStream fis = null;
-        BufferedReader reader = null;
+        FileInputStream fis;
+        BufferedReader reader;
         fis = new FileInputStream("src/main/java/br/ufba/team3/siac/database/dados.txt");
         reader = new BufferedReader(new InputStreamReader(fis, StandardCharsets.UTF_8));
 
         int numCursos = Integer.parseInt(reader.readLine());
         for (int i = 0; i < numCursos; i++) {
             // Le nome
-            reader.skip(0);
             String nome = reader.readLine();
             String codigo = reader.readLine();
             int numDisciplinas = Integer.parseInt(reader.readLine());
@@ -32,7 +31,6 @@ public class UniversidadeService {
 
             for (int j = 0; j < numDisciplinas; j++) {
                 // ADMF52 1 OB 34 20102
-                reader.skip(0);
                 String nomeDisc = reader.readLine();
                 String dadosDisciplina = reader.readLine();
                 String[] disciplinaPalavras = dadosDisciplina.split(" ");
@@ -47,28 +45,12 @@ public class UniversidadeService {
                     disciplina = new Disciplina(codigoDisc, nomeDisc, ch);
                     this.universidade.addDisciplina(disciplina);
                 }
-                DisciplinaCurso disciplinaCurso = new DisciplinaCurso(disciplina, semestre, new HashSet<Disciplina>(), Natureza.fromString(natureza));
+                DisciplinaCurso disciplinaCurso = new DisciplinaCurso(disciplina, semestre, new HashSet<>(), Natureza.fromString(natureza));
                 curso.addDisciplinaCurso(disciplinaCurso);
             }
         }
         reader.close();
         fis.close();
-    }
-
-    public List<Curso> getAllCursos() {
-        return universidade.getCursos();
-    }
-
-    public Curso findCurso(String codigo) {
-        return universidade.findCurso(codigo);
-    }
-
-    public void addAluno(String nome, String matricula, String senha, Curso curso) {
-        universidade.addAluno(new Aluno(matricula, nome, senha, curso));
-    }
-
-    public Aluno findAluno(String matricula) {
-        return this.universidade.findAluno(matricula);
     }
 
     public Universidade getUniversidade() {

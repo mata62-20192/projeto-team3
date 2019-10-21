@@ -44,11 +44,7 @@ public class HomeController implements Initializable {
         this.criarNovaCena("./src/main/resources/view/impressaoCurriculo.fxml", this.impressaoCurriculo);
     }
 
-    public void loadFxml(ActionEvent event) throws IOException {
-
-    }
-
-    public void selectButton(Button button) {
+    private void selectButton(Button button) {
         this.addAluno.getStyleClass().remove("selected");
         this.historicoAluno.getStyleClass().remove("selected");
         this.impressaoCurriculo.getStyleClass().remove("selected");
@@ -60,7 +56,7 @@ public class HomeController implements Initializable {
         this.criarNovaCena("./src/main/resources/view/historicoAluno.fxml", this.historicoAluno);
     }
 
-    public void criarNovaCena(String caminho, Button button) {
+    private void criarNovaCena(String caminho, Button button) {
         try {
             FXMLLoader loader = new FXMLLoader(Paths.get(caminho).toUri().toURL());
             Pane newPane = loader.load();
