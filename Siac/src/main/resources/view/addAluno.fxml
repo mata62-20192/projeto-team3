@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-<AnchorPane styleClass="student-section" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.151"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="student-section" xmlns="http://javafx.com/javafx/8.0.151"
             fx:controller="br.ufba.team3.siac.controller.AddAlunoController">
     <children>
         <VBox>
@@ -42,7 +42,8 @@
                     <children>
                         <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
                                 text="Salvar"/>
-                        <Button fx:id="limparAdicaoAluno"  onAction="#limparDadosCompleto" mnemonicParsing="false" text="Limpar"/>
+                        <Button fx:id="limparAdicaoAluno" onAction="#limparDadosCompleto" mnemonicParsing="false"
+                                text="Limpar"/>
                     </children>
                 </HBox>
                 <Label fx:id="successError" text=""/>

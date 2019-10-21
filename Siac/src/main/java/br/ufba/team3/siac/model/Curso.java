@@ -39,7 +39,7 @@ public class Curso {
         return disciplinasCurso;
     }
 
-    public DisciplinaCurso findDisciplinaCurso(String codigoDisciplina){
+    public DisciplinaCurso findDisciplinaCurso(String codigoDisciplina) {
         for (DisciplinaCurso disciplinaCurso : this.disciplinasCurso) {
             if (disciplinaCurso.getDisciplina().getCodigoDisciplina().equals(codigoDisciplina)) {
                 return disciplinaCurso;

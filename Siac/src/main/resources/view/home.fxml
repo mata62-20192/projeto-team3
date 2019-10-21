@@ -7,31 +7,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox>
-         <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="184.0" fitWidth="184.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="TOP_LEFT" blendMode="DARKEN" layoutY="186.0" prefHeight="52.0" prefWidth="349.0" text="Bem vindo ao novo Siac 2019">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane prefHeight="200.0" prefWidth="514.0">
-               <children>
-                  <Label alignment="TOP_LEFT" layoutY="18.0" prefHeight="17.0" prefWidth="364.0" text="Resolvendo o problema do siac da melhor maneira " />
-               </children>
-            </Pane>
-         </children>
-      </VBox>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="400.0" minWidth="500.0" prefHeight="400.0"
+            prefWidth="326.0" xmlns="http://javafx.com/javafx/8.0.151">
+    <children>
+        <VBox>
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="184.0" fitWidth="184.0" layoutY="8.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@logo.png"/>
+                            </image>
+                        </ImageView>
+                        <Label alignment="TOP_LEFT" blendMode="DARKEN" layoutY="186.0" prefHeight="52.0"
+                               prefWidth="349.0" text="Bem vindo ao novo Siac 2019">
+                            <font>
+                                <Font name="Baskerville Old Face" size="25.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane prefHeight="200.0" prefWidth="514.0">
+                    <children>
+                        <Label alignment="TOP_LEFT" layoutY="18.0" prefHeight="17.0" prefWidth="364.0"
+                               text="Resolvendo o problema do siac da melhor maneira "/>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

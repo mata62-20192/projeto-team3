@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta content="text/html" charset=utf-8" http-equiv="Content-Type">
+    <meta charset=utf-8" content="text/html" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <title>Histórico do Aluno | $nome</title>
     <style>
-        thead{
+        thead {
             background-color: #25867d !important;
             color: white;
         }
-        h1{
+
+        h1 {
             text-align: center;
             font-size: 1.5rem;
             margin: 2rem;
         }
-        .card{
+
+        .card {
             margin: 2rem;
         }
-        .flex{
+
+        .flex {
             display: flex;
             margin: 2rem 0;
         }
-        .flex-item{
+
+        .flex-item {
             margin: 0 2rem;
         }
     </style>
@@ -40,19 +44,19 @@
     </div>
 </div>
 <div class="table-responsive">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th class="text-center" scope="col">Semestre</th>
-        <th scope="col">Disciplina</th>
-        <th class="text-center" scope="col">Natureza</th>
-        <th class="text-center" scope="col">Carga Horária</th>
-        <th class="text-center" scope="col">Nota</th>
-        <th class="text-center" scope="col">Resultado</th>
-    </tr>
-    </thead>
-    $dados
-</table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="text-center" scope="col">Semestre</th>
+            <th scope="col">Disciplina</th>
+            <th class="text-center" scope="col">Natureza</th>
+            <th class="text-center" scope="col">Carga Horária</th>
+            <th class="text-center" scope="col">Nota</th>
+            <th class="text-center" scope="col">Resultado</th>
+        </tr>
+        </thead>
+        $dados
+    </table>
 </div>
 <div class="flex">
     <div class="flex-item"><p>Legenda Naturezas:</p>

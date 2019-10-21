@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Universidade {
-    private String nome;
     private final List<Curso> cursos;
     private final List<Disciplina> disciplinas;
     private final List<Aluno> alunos;
+    private String nome;
 
     public Universidade() {
         this.cursos = new ArrayList<>();

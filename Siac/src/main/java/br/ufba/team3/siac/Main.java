@@ -3,8 +3,6 @@ package br.ufba.team3.siac;
 
 import br.ufba.team3.siac.database.AlunoService;
 import br.ufba.team3.siac.database.UniversidadeService;
-import br.ufba.team3.siac.model.Aluno;
-import br.ufba.team3.siac.model.Curso;
 import br.ufba.team3.siac.model.Universidade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
-import java.util.List;
 
 public class Main extends Application {
 
@@ -24,7 +21,7 @@ public class Main extends Application {
             universidadeService.Leitura();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             AlunoService alunoService = new AlunoService();
             alunoService.criarAlunos();
         }

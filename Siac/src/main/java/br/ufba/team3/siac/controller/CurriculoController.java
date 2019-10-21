@@ -37,7 +37,7 @@ public class CurriculoController implements Initializable {
     }
 
     @FXML
-    public void imprimir(ActionEvent event)  {
+    public void imprimir(ActionEvent event) {
         this.successError.setText("");
         this.minhaListViewCursos.getStyleClass().remove("error");
         if (this.minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {

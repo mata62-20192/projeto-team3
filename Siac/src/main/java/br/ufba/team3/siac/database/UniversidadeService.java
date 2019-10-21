@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
-import java.util.List;
 
 public class UniversidadeService {
     private final Universidade universidade = new Universidade();

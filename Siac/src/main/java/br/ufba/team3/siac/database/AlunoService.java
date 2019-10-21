@@ -7,8 +7,8 @@ import br.ufba.team3.siac.model.DisciplinaCursada;
 import br.ufba.team3.siac.model.DisciplinaCurso;
 
 public class AlunoService {
-    public void criarAlunos(){
-        Aluno aluno1 = new Aluno("1", "Daiane Silva", "sdaasd",  Main.getUniversidade().findCurso("187140"));
+    public void criarAlunos() {
+        Aluno aluno1 = new Aluno("1", "Daiane Silva", "sdaasd", Main.getUniversidade().findCurso("187140"));
 
         DisciplinaCurso disciplinaCurso = aluno1.getCurso().findDisciplinaCurso("ARQA14");
         DisciplinaCursada disciplinaCursada = new DisciplinaCursada(1, disciplinaCurso);
@@ -18,14 +18,12 @@ public class AlunoService {
         aluno1.getHistorico().addDisciplinaCursada(disciplinaCursada);
 
 
-
         disciplinaCurso = aluno1.getCurso().findDisciplinaCurso("ARQA19");
         disciplinaCursada = new DisciplinaCursada(2, disciplinaCurso);
         disciplinaCursada.setConceito(Conceito.APROVADO);
         disciplinaCursada.setNota(10.0);
 
         aluno1.getHistorico().addDisciplinaCursada(disciplinaCursada);
-
 
 
         disciplinaCurso = aluno1.getCurso().findDisciplinaCurso("ARQA15");

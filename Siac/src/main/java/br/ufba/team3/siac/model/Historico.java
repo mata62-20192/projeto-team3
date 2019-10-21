@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,30 +57,30 @@ public class Historico {
     public String imprimirTXT(Aluno aluno) {
         Collections.sort(this.disciplinaCursadasObrigatoria);
         String dados = "";
-        dados += "Matricula: "+ aluno.getMatricula() + "\r\n";
+        dados += "Matricula: " + aluno.getMatricula() + "\r\n";
         dados += "Nome: " + aluno.getNome() + "\r\n";
         dados += "Curso: " + aluno.getCurso().getNome() + "\r\n";
         dados += "CR: " + Double.toString(this.CR()) + "\r\n";
         dados += "Carga Horária Total: " + Integer.toString(this.cargaHorariaTotal()) + "\r\n";
         dados += "Semestre|Natureza|Carga Horária|Nome da Disciplina|Nota|Resultado\r\n";
-            for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadasObrigatoria) {
-                dados += disciplinaCursada.getSemestre() + " - " +
-                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
-                        disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
-                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
-                        (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
-                        disciplinaCursada.getConceito().getTexto() + " ";
-                dados += "\r\n";
-            }
-            for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadaOptativa) {
-                dados += "  - " +
-                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
-                        disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
-                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
-                        (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
-                        disciplinaCursada.getConceito().getTexto() + " ";
-                dados += "\r\n";
-            }
+        for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadasObrigatoria) {
+            dados += disciplinaCursada.getSemestre() + " - " +
+                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
+                    disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
+                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
+                    (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
+                    disciplinaCursada.getConceito().getTexto() + " ";
+            dados += "\r\n";
+        }
+        for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadaOptativa) {
+            dados += "  - " +
+                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
+                    disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
+                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
+                    (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
+                    disciplinaCursada.getConceito().getTexto() + " ";
+            dados += "\r\n";
+        }
         return dados;
     }
 

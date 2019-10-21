@@ -2,7 +2,6 @@ package br.ufba.team3.siac.controller;
 
 import br.ufba.team3.siac.Main;
 import br.ufba.team3.siac.model.Aluno;
-import br.ufba.team3.siac.model.Curso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,7 +37,7 @@ public class HistoricoController implements Initializable {
     }
 
     @FXML
-    public void imprimir(ActionEvent event)  {
+    public void imprimir(ActionEvent event) {
         this.successError.setText("");
         this.minhaListViewAlunos.getStyleClass().remove("error");
         if (this.minhaListViewAlunos.getSelectionModel().getSelectedItem() == null) {
@@ -55,7 +54,7 @@ public class HistoricoController implements Initializable {
                 new FileChooser.ExtensionFilter("Text Files", "*.txt")
                 , new FileChooser.ExtensionFilter("HTML Files", "*.html")
         );
-        fileChooser.setInitialFileName("Curriculo");
+        fileChooser.setInitialFileName("Historico");
         File file = fileChooser.showSaveDialog(imprimir.getScene().getWindow());
         if (file != null) {
             SalvarArquivo(file);

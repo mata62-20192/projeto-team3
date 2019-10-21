@@ -77,16 +77,15 @@
 }
 
 
-
-.student-section HBox{
+.student-section HBox {
     -fx-padding: 10 10 10 10;
 }
 
-.student-section Label{
+.student-section Label {
     -fx-padding: 0 10 0 0;
 }
 
-.student-section Button{
+.student-section Button {
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-font-size: 18px;
@@ -99,15 +98,15 @@
 }
 
 
-.error{
+.error {
     -fx-border-color: red;
 }
 
-.success{
+.success {
     -fx-background-color: #158000 !important;
     -fx-border-color: green;
 }
 
-.error Button{
+.error Button {
     -fx-background-color: #ff1f00;
 }
