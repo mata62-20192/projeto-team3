@@ -28,33 +28,25 @@ public class Historico implements Imprimir{
     }
 
     private Integer cargaHorariaTotal() {
-        int cargaHoraria = 0;
-        for (DisciplinaCursada disciplinaCursada : disciplinaCursadasObrigatoria
-        ) {
-            cargaHoraria += disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria();
-        }
-        for (DisciplinaCursada disciplinaCursada : disciplinaCursadaOptativa
-        ) {
-            cargaHoraria += disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria();
-        }
-        return cargaHoraria;
+        Integer total = 0;
+        total += this.disciplinaCursadasObrigatoria.stream()
+                .reduce(0, (resultado, disciplina) ->
+                        resultado + disciplina.getDisciplinaCurso().getDisciplina().getCargaHoraria(), Integer::sum);
+        total += this.disciplinaCursadaOptativa.stream()
+                .reduce(0, (resultado, disciplina) ->
+                        resultado + disciplina.getDisciplinaCurso().getDisciplina().getCargaHoraria(), Integer::sum);
+        return total;
     }
 
     private double CR() {
         Double CR = 0.0;
-        for (DisciplinaCursada disciplinaCursada : disciplinaCursadasObrigatoria
-        ) {
-            if (disciplinaCursada.getConceito() == Conceito.APROVADO || disciplinaCursada.getConceito() == Conceito.REPROVADOPORNOTA) {
-                CR += disciplinaCursada.getNota();
-            }
-        }
-        for (DisciplinaCursada disciplinaCursada : disciplinaCursadaOptativa
-        ) {
-            if (disciplinaCursada.getConceito() == Conceito.APROVADO || disciplinaCursada.getConceito() == Conceito.REPROVADOPORNOTA) {
-                CR += disciplinaCursada.getNota();
-            }
-        }
-        return (CR / (disciplinaCursadasObrigatoria.size() + disciplinaCursadaOptativa.size()));
+        CR += this.disciplinaCursadasObrigatoria.stream().map(disciplinaCursada ->
+            (disciplinaCursada.getConceito() == Conceito.APROVADO || disciplinaCursada.getConceito() == Conceito.REPROVADOPORNOTA) ? disciplinaCursada.getNota() : 0.0
+        ).reduce(0.00,(a,b) -> a+b);
+        CR += this.disciplinaCursadaOptativa.stream().map(disciplinaCursada ->
+                (disciplinaCursada.getConceito() == Conceito.APROVADO || disciplinaCursada.getConceito() == Conceito.REPROVADOPORNOTA) ? disciplinaCursada.getNota() : 0.0
+        ).reduce(0.00,(a,b) -> a+b);
+       return CR/(this.disciplinaCursadaOptativa.size()+this.disciplinaCursadasObrigatoria.size());
     }
 
     public String imprimirTXT() {
@@ -96,34 +88,32 @@ public class Historico implements Imprimir{
             String curso = aluno.getCurso().getNome();
             String cr = Double.toString(this.CR());
             String cargaHorariaTotal = Integer.toString(this.cargaHorariaTotal());
-            String dados = "";
-            for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadasObrigatoria) {
-                dados += "<tr>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getSemestre() + "</td>" +
-                        "<td>" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + "</td>" +
-                        "<td class=\"text-center\">" + (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getConceito().getTexto() + "</td>";
-                dados += "</tr>";
-            }
-            for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadaOptativa) {
-                dados += "<tr>" +
-                        "<td>" + " " + "</td>" +
-                        "<td>" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + "</td>" +
-                        "<td class=\"text-center\">" + (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + "</td>" +
-                        "<td class=\"text-center\">" + disciplinaCursada.getConceito().getTexto() + "</td>";
-                dados += "</tr>";
-            }
+            StringBuilder dados = new StringBuilder("");
+            dados.append(this.disciplinaCursadasObrigatoria.stream().map(disciplinaCursada ->
+                    "<tr>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getSemestre() + "</td>" +
+                            "<td>" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + "</td>" +
+                            "<td class=\"text-center\">" + (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getConceito().getTexto() + "</td></tr>"
+            ).collect(Collectors.joining("")));
+            dados.append( this.disciplinaCursadaOptativa.stream().map(disciplinaCursada ->
+                    "<tr>" +
+                            "<td>" + " " + "</td>" +
+                            "<td>" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + "</td>" +
+                            "<td class=\"text-center\">" + (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + "</td>" +
+                            "<td class=\"text-center\">" + disciplinaCursada.getConceito().getTexto() + "</td></tr>"
+            ).collect(Collectors.joining("")));
             htmlString = htmlString.replace("$matricula", matricula);
             htmlString = htmlString.replace("$nome", nome);
             htmlString = htmlString.replace("$curso", curso);
             htmlString = htmlString.replace("$cr", cr);
             htmlString = htmlString.replace("$matricula", matricula);
             htmlString = htmlString.replace("$cargaHorariaTotal", cargaHorariaTotal);
-            htmlString = htmlString.replace("$dados", dados);
+            htmlString = htmlString.replace("$dados", dados.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

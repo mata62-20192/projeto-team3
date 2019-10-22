@@ -46,7 +46,7 @@ public class HistoricoController implements Initializable {
             String codigo = this.alunos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Imprimir curriculo = Main.getUniversidade().findAluno(codigo).getHistorico();
 
-            FileUtil.exportar("Curriculo", imprimir.getScene().getWindow(), this.successoErro, this.alunos, curriculo);
+            FileUtil.exportar("Historico", imprimir.getScene().getWindow(), this.successoErro, this.alunos, curriculo);
         }
     }
 

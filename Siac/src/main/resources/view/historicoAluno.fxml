@@ -20,7 +20,7 @@
             </font>
         </Label>
         <HBox>
-            <Label text="Curso*:"/>
+            <Label text="Alunos*:"/>
             <ListView minWidth="600" maxHeight="300" fx:id="alunos"/>
         </HBox>
         <HBox>
