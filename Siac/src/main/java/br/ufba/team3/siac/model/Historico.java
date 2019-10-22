@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Historico {
-    private final List<DisciplinaCursada> disciplinaCursadasObrigatoria;
-    private final List<DisciplinaCursada> disciplinaCursadaOptativa;
+public final class Historico {
+    private List<DisciplinaCursada> disciplinaCursadasObrigatoria;
+    private List<DisciplinaCursada> disciplinaCursadaOptativa;
 
     public Historico() {
         this.disciplinaCursadasObrigatoria = new ArrayList<>();

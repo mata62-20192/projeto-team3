@@ -2,7 +2,7 @@ package br.ufba.team3.siac.model;
 
 import java.util.Objects;
 
-public final class Aluno {
+public class Aluno {
     private final String matricula;
     private final String nome;
     private String senha;

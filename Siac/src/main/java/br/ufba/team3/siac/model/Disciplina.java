@@ -3,9 +3,9 @@ package br.ufba.team3.siac.model;
 import java.util.Objects;
 
 public final class Disciplina {
-    private final String nomeDisciplina;
-    private final String codigoDisciplina;
-    private final int cargaHoraria;
+    private String nomeDisciplina;
+    private String codigoDisciplina;
+    private int cargaHoraria;
 
     public Disciplina(String codigoDisciplina, String nomeDisciplina, int cargaHoraria) {
         this.nomeDisciplina = nomeDisciplina;

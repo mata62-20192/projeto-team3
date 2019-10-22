@@ -4,8 +4,8 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 
-public class Curriculo {
-    private final Curso curso;
+public final class Curriculo {
+    private Curso curso;
 
     public Curriculo(Curso curso) {
         this.curso = curso;
