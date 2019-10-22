@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -23,7 +24,7 @@ public class AddAlunoController implements Initializable {
     private TextField nome;
 
     @FXML
-    private TextField senha;
+    private PasswordField senha;
 
     @FXML
     private TextField matricula;
