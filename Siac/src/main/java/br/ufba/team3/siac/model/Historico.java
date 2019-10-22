@@ -24,8 +24,8 @@ public class Historico {
         }
     }
 
-    public Integer cargaHorariaTotal() {
-        Integer cargaHoraria = 0;
+    private Integer cargaHorariaTotal() {
+        int cargaHoraria = 0;
         for (DisciplinaCursada disciplinaCursada : disciplinaCursadasObrigatoria
         ) {
             cargaHoraria += disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria();
@@ -37,7 +37,7 @@ public class Historico {
         return cargaHoraria;
     }
 
-    public double CR() {
+    private double CR() {
         Double CR = 0.0;
         for (DisciplinaCursada disciplinaCursada : disciplinaCursadasObrigatoria
         ) {
@@ -60,8 +60,8 @@ public class Historico {
         dados += "Matricula: " + aluno.getMatricula() + "\r\n";
         dados += "Nome: " + aluno.getNome() + "\r\n";
         dados += "Curso: " + aluno.getCurso().getNome() + "\r\n";
-        dados += "CR: " + Double.toString(this.CR()) + "\r\n";
-        dados += "Carga Horária Total: " + Integer.toString(this.cargaHorariaTotal()) + "\r\n";
+        dados += "CR: " + this.CR() + "\r\n";
+        dados += "Carga Horária Total: " + this.cargaHorariaTotal() + "\r\n";
         dados += "Semestre|Natureza|Carga Horária|Nome da Disciplina|Nota|Resultado\r\n";
         for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadasObrigatoria) {
             dados += disciplinaCursada.getSemestre() + " - " +
@@ -128,6 +128,4 @@ public class Historico {
         }
         return htmlString;
     }
-
-
 }

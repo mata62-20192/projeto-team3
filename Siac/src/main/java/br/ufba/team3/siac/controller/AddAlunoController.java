@@ -30,15 +30,8 @@ public class AddAlunoController implements Initializable {
     @FXML
     private TextField matricula;
 
-
     @FXML
-    private Button adicionarAlunoNovo;
-
-    @FXML
-    private Button limparAdicaoAluno;
-
-    @FXML
-    private Label successError;
+    private Label successoErro;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,11 +42,9 @@ public class AddAlunoController implements Initializable {
     }
 
     public void AdicionarAlunoNovo(ActionEvent actionEvent) {
-        this.nome.getStyleClass().remove("error");
-        this.senha.getStyleClass().remove("error");
-        this.matricula.getStyleClass().remove("error");
-        this.minhaListViewCursos.getStyleClass().remove("error");
-        if (!checkErrosForms()) {
+        this.limparCss();
+        this.successoErro.setText("");
+        if (!checagemDeErroDoForms()) {
             String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
             String nome = this.nome.getText();
@@ -62,8 +53,7 @@ public class AddAlunoController implements Initializable {
             Main.getUniversidade().addAluno(new Aluno(matricula, nome, senha, cursoSelecionado));
             this.limparDados();
             this.minhaListViewCursos.getSelectionModel().clearSelection();
-            this.successError.setText("O aluno foi adicionado com sucesso");
-            System.out.println(Main.getUniversidade().getAlunos());
+            this.successoErro.setText("O aluno foi adicionado com sucesso");
         }
     }
 
@@ -72,45 +62,53 @@ public class AddAlunoController implements Initializable {
         this.senha.clear();
         this.nome.clear();
         this.minhaListViewCursos.getSelectionModel().clearSelection();
+        this.limparCss();
+    }
+
+    @FXML
+    private void limparDadosCompleto() {
+        this.limparDados();
+        this.successoErro.setText("");
+    }
+
+    private void limparCss(){
         this.nome.getStyleClass().remove("error");
         this.senha.getStyleClass().remove("error");
         this.matricula.getStyleClass().remove("error");
         this.minhaListViewCursos.getStyleClass().remove("error");
     }
 
-    public void limparDadosCompleto() {
-        this.limparDados();
-        this.successError.setText("");
-    }
-
-    private boolean checkErrosForms() {
-        boolean check = false;
-        if (nome.getText().trim().isEmpty()) {
-            this.successError.setText("O aluno não foi adicionado com sucesso");
-            this.nome.getStyleClass().add("error");
-            this.successError.setText(this.successError.getText() + "\nNome não preenchido");
-            check = true;
+    private boolean checagemDeErroDoForms() {
+        boolean checagem = false;
+        if (this.nome.getText().trim().isEmpty()) {
+            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Nome não preenchido\n", this.nome);
         }
-        if (senha.getText().trim().isEmpty()) {
-            this.senha.getStyleClass().add("error");
-            this.successError.setText(this.successError.getText() + "\nSenha não preenchida");
-            check = true;
+        if (this.senha.getText().trim().isEmpty()) {
+            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Senha não preenchida\n", this.senha);
         }
-        if (matricula.getText().trim().isEmpty()) {
-            matricula.getStyleClass().add("error");
-            this.successError.setText(this.successError.getText() + "\nMatricula não preenchida");
-            check = true;
+        if (this.matricula.getText().trim().isEmpty()) {
+            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Matricula não preenchida\n", this.matricula);
         }
         if (minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {
-            this.minhaListViewCursos.getStyleClass().add("error");
-            this.successError.setText(this.successError.getText() + "\nCurso não selecionado");
-            check = true;
+            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Curso não selecionado\n");
         }
         if (Main.getUniversidade().findAluno(this.matricula.getText()) != null) {
-            this.minhaListViewCursos.getStyleClass().add("error");
-            this.successError.setText(this.successError.getText() + "\nAluno já existe. Matricula repetida");
-            check = true;
+            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Aluno já existe. Matricula repetida\n" );
         }
-        return check;
+        if(checagem){
+            this.successoErro.setText("O aluno não foi adicionado com sucesso\n" + this.successoErro.getText());
+        }
+        return checagem;
+    }
+
+    private void setErros(ListView listView, Boolean checagem, Label label, String texto){
+        listView.getStyleClass().add("error");
+        checagem = true;
+        label.setText(label.getText() + texto);
+    }
+
+    private void setErros(ListView listView, Boolean checagem, Label label, String texto, TextField textField){
+        this.setErros(listView, checagem, label, texto);
+        textField.getStyleClass().add("error");
     }
 }

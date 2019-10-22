@@ -13,9 +13,7 @@
                 <Button id="account" fx:id="homeTop" onAction="#home" text="New Siac 2019">
                     <graphic>
                         <ImageView fitHeight="42" fitWidth="42" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@logo.png"/>
-                            </image>
+                            <Image url="@logo.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
@@ -25,31 +23,25 @@
     <left>
         <AnchorPane styleClass="sidebar-section">
             <VBox>
-                <children>
-                    <Button fx:id="home" mnemonicParsing="false" onAction="#home" styleClass="sidebar-button"
-                            text="Home"/>
-                    <Button fx:id="addAluno" mnemonicParsing="false" onAction="#adicionarAluno"
-                            styleClass="sidebar-button" text="Adicionar Aluno"/>
-                    <Button fx:id="historicoAluno" mnemonicParsing="false" onAction="#historicoAluno"
-                            styleClass="sidebar-button" text="Histórico do Aluno"/>
-                    <Button fx:id="impressaoCurriculo" mnemonicParsing="false" onAction="#impressaoCurriculo"
-                            styleClass="sidebar-button" text="Impressão de Currículo"/>
-                </children>
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" styleClass="sidebar-button"
+                        text="Home"/>
+                <Button fx:id="addAluno" mnemonicParsing="false" onAction="#adicionarAluno"
+                        styleClass="sidebar-button" text="Adicionar Aluno"/>
+                <Button fx:id="historicoAluno" mnemonicParsing="false" onAction="#historicoAluno"
+                        styleClass="sidebar-button" text="Histórico do Aluno"/>
+                <Button fx:id="impressaoCurriculo" mnemonicParsing="false" onAction="#impressaoCurriculo"
+                        styleClass="sidebar-button" text="Impressão de Currículo"/>
             </VBox>
         </AnchorPane>
     </left>
     <center>
         <VBox styleClass="content-section">
-            <children>
-                <Pane fx:id="secPane" minHeight="400.0" minWidth="500.0"/>
-            </children>
+            <Pane fx:id="pane" minHeight="400.0" minWidth="500.0"/>
         </VBox>
     </center>
     <bottom>
         <HBox id="footer-section">
-            <children>
-                <Label text="Copyright 2019 Team3"/>
-            </children>
+            <Label text="Copyright 2019 Team3"/>
         </HBox>
     </bottom>
     <stylesheets>

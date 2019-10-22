@@ -19,36 +19,36 @@ import java.util.ResourceBundle;
 
 public class CurriculoController implements Initializable {
     @FXML
-    private ListView<String> minhaListViewCursos;
+    private ListView<String> cursos;
 
     @FXML
     private Button imprimir;
 
     @FXML
-    private Label successError;
+    private Label successoErro;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Curso> cursos = Main.getUniversidade().getCursos();
         for (Curso curso : cursos) {
-            minhaListViewCursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
+            this.cursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
         }
     }
 
     @FXML
     public void imprimir(ActionEvent event) {
-        this.successError.setText("");
-        this.minhaListViewCursos.getStyleClass().remove("error");
-        if (this.minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {
-            this.successError.setText("É preciso escolher um curso válido");
-            this.minhaListViewCursos.getStyleClass().addAll("error");
+        this.successoErro.setText("");
+        this.cursos.getStyleClass().remove("error");
+        if (this.cursos.getSelectionModel().getSelectedItem() == null) {
+            this.successoErro.setText("É preciso escolher um curso válido");
+            this.cursos.getStyleClass().addAll("error");
         } else {
-            this.FileChooser();
+            this.selecionadorDeArquivo();
         }
     }
 
-    private void FileChooser() {
+    private void selecionadorDeArquivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Text Files", "*.txt")
@@ -58,8 +58,8 @@ public class CurriculoController implements Initializable {
         File file = fileChooser.showSaveDialog(imprimir.getScene().getWindow());
         if (file != null) {
             SalvarArquivo(file);
-            this.successError.setText("O arquivo foi salvo com sucesso");
-            this.minhaListViewCursos.getStyleClass().remove("error");
+            this.successoErro.setText("O arquivo foi salvo com sucesso");
+            this.cursos.getStyleClass().remove("error");
         }
     }
 
@@ -67,7 +67,7 @@ public class CurriculoController implements Initializable {
         try {
             String conteudo;
             FileWriter leitorDeArquivo;
-            String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
+            String codigo = this.cursos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
             if (arquivo.getAbsolutePath().contains(".html")) {
                 conteudo = cursoSelecionado.getCurriculo().imprimirHTML();

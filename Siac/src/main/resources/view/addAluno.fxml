@@ -6,52 +6,38 @@
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="student-section" xmlns="http://javafx.com/javafx/8.0.151"
             fx:controller="br.ufba.team3.siac.controller.AddAlunoController">
-    <children>
-        <VBox>
-            <children>
-                <Label text="Adicionar novo aluno">
-                    <font>
-                        <Font name="System Bold" size="29.0"/>
-                    </font>
-                </Label>
-                <HBox>
-                    <children>
-                        <Label text="Curso*:"/>
-                        <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewCursos"/>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Label text="Nome*:"/>
-                        <TextField fx:id="nome"/>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Label text="Senha*:"/>
-                        <TextField fx:id="senha" prefWidth="172.0"/>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Label text="Matricula*:"/>
-                        <TextField fx:id="matricula"/>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
-                                text="Salvar"/>
-                        <Button fx:id="limparAdicaoAluno" onAction="#limparDadosCompleto" mnemonicParsing="false"
-                                text="Limpar"/>
-                    </children>
-                </HBox>
-                <Label fx:id="successError" text=""/>
-            </children>
-        </VBox>
-    </children>
     <stylesheets>
         <URL value="@demo.css"/>
     </stylesheets>
+    <VBox>
+        <Label text="Adicionar novo aluno">
+            <font>
+                <Font name="System Bold" size="29.0"/>
+            </font>
+        </Label>
+        <HBox>
+            <Label text="Curso*:"/>
+            <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewCursos"/>
+        </HBox>
+        <HBox>
+            <Label text="Nome*:"/>
+            <TextField fx:id="nome"/>
+        </HBox>
+        <HBox>
+            <Label text="Senha*:"/>
+            <TextField fx:id="senha" prefWidth="172.0"/>
+        </HBox>
+        <HBox>
+            <Label text="Matricula*:"/>
+            <TextField fx:id="matricula"/>
+        </HBox>
+        <HBox>
+            <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
+                    text="Salvar"/>
+            <Button fx:id="limparAdicaoAluno" onAction="#limparDadosCompleto" mnemonicParsing="false"
+                    text="Limpar"/>
+        </HBox>
+        <Label fx:id="successoErro"/>
+    </VBox>
 </AnchorPane>
 

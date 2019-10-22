@@ -10,30 +10,22 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="student-section"
             xmlns="http://javafx.com/javafx/8.0.151"
             fx:controller="br.ufba.team3.siac.controller.HistoricoController">
-    <children>
-        <VBox>
-            <children>
-                <Label text="Impressão Histórico do Aluno">
-                    <font>
-                        <Font name="System Bold" size="29.0"/>
-                    </font>
-                </Label>
-                <HBox>
-                    <children>
-                        <Label text="Curso*:"/>
-                        <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewAlunos"/>
-                    </children>
-                </HBox>
-                <HBox>
-                    <children>
-                        <Button fx:id="imprimir" onAction="#imprimir" mnemonicParsing="false" text="Salvar Curriculo"/>
-                    </children>
-                </HBox>
-                <Label fx:id="successError" text=""/>
-            </children>
-        </VBox>
-    </children>
     <stylesheets>
         <URL value="@demo.css"/>
     </stylesheets>
+    <VBox>
+        <Label text="Impressão Histórico do Aluno">
+            <font>
+                <Font name="System Bold" size="29.0"/>
+            </font>
+        </Label>
+        <HBox>
+            <Label text="Curso*:"/>
+            <ListView minWidth="600" maxHeight="300" fx:id="alunos"/>
+        </HBox>
+        <HBox>
+            <Button fx:id="imprimir" onAction="#imprimir" mnemonicParsing="false" text="Salvar Curriculo"/>
+        </HBox>
+        <Label fx:id="successError"/>
+    </VBox>
 </AnchorPane>

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+    public Button homeTop;
     @FXML
     private Button addAluno;
 
@@ -25,7 +26,7 @@ public class HomeController implements Initializable {
     private Button impressaoCurriculo;
 
     @FXML
-    private Pane secPane;
+    private Pane pane;
 
     @FXML
     private Button home;
@@ -59,10 +60,10 @@ public class HomeController implements Initializable {
     private void criarNovaCena(String caminho, Button button) {
         try {
             FXMLLoader loader = new FXMLLoader(Paths.get(caminho).toUri().toURL());
-            Pane newPane = loader.load();
-            List<Node> parentChildren = ((Pane) secPane.getParent()).getChildren();
-            parentChildren.set(parentChildren.indexOf(secPane), newPane);
-            secPane = newPane;
+            Pane novoPane = loader.load();
+            List<Node> parentChildren = ((Pane) this.pane.getParent()).getChildren();
+            parentChildren.set(parentChildren.indexOf(this.pane), novoPane);
+            this.pane = novoPane;
             this.selectButton(button);
         } catch (IOException e) {
             e.printStackTrace();

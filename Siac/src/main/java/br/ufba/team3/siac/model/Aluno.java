@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Aluno {
     private final String matricula;
     private final String nome;
-    private final String senha;
+    private String senha;
     private final Curso curso;
-    private Historico historico;
+    private final Historico historico;
 
     public Aluno(String matricula, String nome, String senha, Curso curso) {
         this.matricula = matricula;
@@ -48,5 +48,9 @@ public class Aluno {
 
     public String getSenha() {
         return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

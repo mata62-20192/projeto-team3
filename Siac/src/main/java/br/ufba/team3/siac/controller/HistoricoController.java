@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class HistoricoController implements Initializable {
     @FXML
-    private ListView<String> minhaListViewAlunos;
+    private ListView<String> alunos;
 
     @FXML
     private Button imprimir;
@@ -32,23 +32,23 @@ public class HistoricoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List<Aluno> alunos = Main.getUniversidade().getAlunos();
         for (Aluno aluno : alunos) {
-            minhaListViewAlunos.getItems().add(aluno.getMatricula() + " - " + aluno.getNome());
+            this.alunos.getItems().add(aluno.getMatricula() + " - " + aluno.getNome());
         }
     }
 
     @FXML
     public void imprimir(ActionEvent event) {
         this.successError.setText("");
-        this.minhaListViewAlunos.getStyleClass().remove("error");
-        if (this.minhaListViewAlunos.getSelectionModel().getSelectedItem() == null) {
+        this.alunos.getStyleClass().remove("error");
+        if (this.alunos.getSelectionModel().getSelectedItem() == null) {
             this.successError.setText("É preciso escolher um curso válido");
-            this.minhaListViewAlunos.getStyleClass().addAll("error");
+            this.alunos.getStyleClass().addAll("error");
         } else {
-            this.FileChooser();
+            this.selecionadorDeArquivo();
         }
     }
 
-    private void FileChooser() {
+    private void selecionadorDeArquivo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Text Files", "*.txt")
@@ -59,7 +59,7 @@ public class HistoricoController implements Initializable {
         if (file != null) {
             SalvarArquivo(file);
             this.successError.setText("O arquivo foi salvo com sucesso");
-            this.minhaListViewAlunos.getStyleClass().remove("error");
+            this.alunos.getStyleClass().remove("error");
         }
     }
 
@@ -67,7 +67,7 @@ public class HistoricoController implements Initializable {
         try {
             String conteudo;
             FileWriter leitorDeArquivo;
-            String codigo = this.minhaListViewAlunos.getSelectionModel().getSelectedItem().split(" - ")[0];
+            String codigo = this.alunos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Aluno alunoSelecionado = Main.getUniversidade().findAluno(codigo);
             if (arquivo.getAbsolutePath().contains(".html")) {
                 conteudo = alunoSelecionado.getHistorico().imprimirHTML(alunoSelecionado);
