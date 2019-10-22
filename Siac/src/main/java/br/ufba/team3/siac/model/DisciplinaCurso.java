@@ -3,7 +3,7 @@ package br.ufba.team3.siac.model;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class DisciplinaCurso {
+public class DisciplinaCurso {
     private Disciplina disciplina;
     private int semestre;
     private HashSet<Disciplina> preRequisitos;
