@@ -6,7 +6,6 @@ import br.ufba.team3.siac.model.Curso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -18,11 +17,10 @@ import java.util.ResourceBundle;
 public class AddAlunoController implements Initializable {
 
     @FXML
-    private ListView<String> minhaListViewCursos;
+    private ListView<String> cursos;
 
     @FXML
     private TextField nome;
-
 
     @FXML
     private TextField senha;
@@ -37,7 +35,7 @@ public class AddAlunoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List<Curso> cursos = Main.getUniversidade().getCursos();
         for (Curso curso : cursos) {
-            minhaListViewCursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
+            this.cursos.getItems().add(curso.getCodigo() + " - " + curso.getNome());
         }
     }
 
@@ -45,14 +43,14 @@ public class AddAlunoController implements Initializable {
         this.limparCss();
         this.successoErro.setText("");
         if (!checagemDeErroDoForms()) {
-            String codigo = this.minhaListViewCursos.getSelectionModel().getSelectedItem().split(" - ")[0];
+            String codigo = this.cursos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
             String nome = this.nome.getText();
             String matricula = this.matricula.getText();
             String senha = this.senha.getText();
             Main.getUniversidade().addAluno(new Aluno(matricula, nome, senha, cursoSelecionado));
             this.limparDados();
-            this.minhaListViewCursos.getSelectionModel().clearSelection();
+            this.cursos.getSelectionModel().clearSelection();
             this.successoErro.setText("O aluno foi adicionado com sucesso");
         }
     }
@@ -61,7 +59,7 @@ public class AddAlunoController implements Initializable {
         this.matricula.clear();
         this.senha.clear();
         this.nome.clear();
-        this.minhaListViewCursos.getSelectionModel().clearSelection();
+        this.cursos.getSelectionModel().clearSelection();
         this.limparCss();
     }
 
@@ -75,40 +73,40 @@ public class AddAlunoController implements Initializable {
         this.nome.getStyleClass().remove("error");
         this.senha.getStyleClass().remove("error");
         this.matricula.getStyleClass().remove("error");
-        this.minhaListViewCursos.getStyleClass().remove("error");
+        this.cursos.getStyleClass().remove("error");
     }
 
     private boolean checagemDeErroDoForms() {
-        boolean checagem = false;
-        if (this.nome.getText().trim().isEmpty()) {
-            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Nome não preenchido\n", this.nome);
+        boolean check = false;
+        if (nome.getText().trim().isEmpty()) {
+            this.nome.getStyleClass().add("error");
+            this.successoErro.setText(this.successoErro.getText() + "Nome não preenchido\n");
+            check = true;
         }
-        if (this.senha.getText().trim().isEmpty()) {
-            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Senha não preenchida\n", this.senha);
+        if (senha.getText().trim().isEmpty()) {
+            this.senha.getStyleClass().add("error");
+            this.successoErro.setText(this.successoErro.getText() + "Senha não preenchida\n");
+            check = true;
         }
-        if (this.matricula.getText().trim().isEmpty()) {
-            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Matricula não preenchida\n", this.matricula);
+        if (matricula.getText().trim().isEmpty()) {
+            matricula.getStyleClass().add("error");
+            this.successoErro.setText(this.successoErro.getText() + "Matricula não preenchida\n");
+            check = true;
         }
-        if (minhaListViewCursos.getSelectionModel().getSelectedItem() == null) {
-            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Curso não selecionado\n");
+        if (cursos.getSelectionModel().getSelectedItem() == null) {
+            this.cursos.getStyleClass().add("error");
+            this.successoErro.setText(this.successoErro.getText() + "Curso não selecionado\n");
+            check = true;
         }
         if (Main.getUniversidade().findAluno(this.matricula.getText()) != null) {
-            this.setErros(this.minhaListViewCursos, checagem, this.successoErro,"Aluno já existe. Matricula repetida\n" );
+            this.cursos.getStyleClass().add("error");
+            this.successoErro.setText(this.successoErro.getText() + "Aluno já existe. Matricula repetida\n");
+            check = true;
         }
-        if(checagem){
+        if(check){
             this.successoErro.setText("O aluno não foi adicionado com sucesso\n" + this.successoErro.getText());
         }
-        return checagem;
+        return check;
     }
 
-    private void setErros(ListView listView, Boolean checagem, Label label, String texto){
-        listView.getStyleClass().add("error");
-        checagem = true;
-        label.setText(label.getText() + texto);
-    }
-
-    private void setErros(ListView listView, Boolean checagem, Label label, String texto, TextField textField){
-        this.setErros(listView, checagem, label, texto);
-        textField.getStyleClass().add("error");
-    }
 }

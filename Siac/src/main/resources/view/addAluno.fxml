@@ -17,7 +17,7 @@
         </Label>
         <HBox>
             <Label text="Curso*:"/>
-            <ListView minWidth="600" maxHeight="300" fx:id="minhaListViewCursos"/>
+            <ListView minWidth="600" maxHeight="300" fx:id="cursos"/>
         </HBox>
         <HBox>
             <Label text="Nome*:"/>
