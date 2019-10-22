@@ -2,7 +2,7 @@ package br.ufba.team3.siac.model;
 
 import java.util.Objects;
 
-public class Disciplina {
+public final class Disciplina {
     private final String nomeDisciplina;
     private final String codigoDisciplina;
     private final int cargaHoraria;

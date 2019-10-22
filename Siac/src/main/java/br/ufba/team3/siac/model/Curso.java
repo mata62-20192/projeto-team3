@@ -3,7 +3,7 @@ package br.ufba.team3.siac.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Curso {
+public final class Curso {
     private final String codigo;
     private final String nome;
     private final List<DisciplinaCurso> disciplinasCurso;

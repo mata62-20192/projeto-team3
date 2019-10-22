@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 
-public class UniversidadeService {
+public final class UniversidadeService {
     private final Universidade universidade = new Universidade();
 
     public void Leitura() throws IOException {
