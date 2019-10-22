@@ -34,9 +34,9 @@ public class FileUtil {
             String conteudo;
             FileWriter leitorDeArquivo;
             if (arquivo.getAbsolutePath().contains(".html")) {
-                conteudo = imprimir.imprimirHTML();
+                conteudo = imprimir.conteudoHTML();
             } else {
-                conteudo = imprimir.imprimirTXT();
+                conteudo = imprimir.conteudoTXT();
             }
             leitorDeArquivo = new FileWriter(arquivo);
             leitorDeArquivo.write(conteudo);

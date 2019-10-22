@@ -49,7 +49,7 @@ public class Historico implements Imprimir{
        return CR/(this.disciplinaCursadaOptativa.size()+this.disciplinaCursadasObrigatoria.size());
     }
 
-    public String imprimirTXT() {
+    public String conteudoTXT() {
         Collections.sort(this.disciplinaCursadasObrigatoria);
         StringBuilder dados = new StringBuilder("");
         dados.append("Matricula: " + this.aluno.getMatricula() + "\r\n");
@@ -77,7 +77,7 @@ public class Historico implements Imprimir{
         return dados.toString();
     }
 
-    public String imprimirHTML() {
+    public String conteudoHTML() {
         Collections.sort(this.disciplinaCursadasObrigatoria);
         String htmlString = "";
         try {
