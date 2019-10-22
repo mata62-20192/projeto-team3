@@ -58,7 +58,7 @@ public class Historico implements Imprimir{
     }
 
     public String imprimirTXT() {
-        this.disciplinaCursadasObrigatoria.sort();
+        Collections.sort(this.disciplinaCursadasObrigatoria);
         StringBuilder dados = new StringBuilder("");
         dados.append("Matricula: " + this.aluno.getMatricula() + "\r\n");
         dados.append( "Nome: " + this.aluno.getNome() + "\r\n");
