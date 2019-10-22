@@ -1,15 +1,12 @@
 package br.ufba.team3.siac.database;
 
 import br.ufba.team3.siac.Main;
-import br.ufba.team3.siac.model.Aluno;
-import br.ufba.team3.siac.model.Conceito;
-import br.ufba.team3.siac.model.DisciplinaCursada;
-import br.ufba.team3.siac.model.DisciplinaCurso;
+import br.ufba.team3.siac.model.*;
 
 public class AlunoService {
     public void criarAlunos() {
         Aluno aluno1 = new Aluno("1", "Daiane Silva", "sdaasd", Main.getUniversidade().findCurso("187140"));
-
+        aluno1.setHistorico(new Historico(aluno1));
         DisciplinaCurso disciplinaCurso = aluno1.getCurso().findDisciplinaCurso("ARQA14");
         DisciplinaCursada disciplinaCursada = new DisciplinaCursada(1, disciplinaCurso);
         disciplinaCursada.setConceito(Conceito.APROVADO);

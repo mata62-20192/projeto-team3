@@ -6,14 +6,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Historico {
+public class Historico implements Imprimir{
     private List<DisciplinaCursada> disciplinaCursadasObrigatoria;
     private List<DisciplinaCursada> disciplinaCursadaOptativa;
+    private Aluno aluno;
 
-    public Historico() {
+    public Historico(Aluno aluno) {
         this.disciplinaCursadasObrigatoria = new ArrayList<>();
         this.disciplinaCursadaOptativa = new ArrayList<>();
+        this.aluno = aluno;
     }
 
     public void addDisciplinaCursada(DisciplinaCursada disciplinaCursada) {
@@ -54,37 +57,35 @@ public class Historico {
         return (CR / (disciplinaCursadasObrigatoria.size() + disciplinaCursadaOptativa.size()));
     }
 
-    public String imprimirTXT(Aluno aluno) {
-        Collections.sort(this.disciplinaCursadasObrigatoria);
-        String dados = "";
-        dados += "Matricula: " + aluno.getMatricula() + "\r\n";
-        dados += "Nome: " + aluno.getNome() + "\r\n";
-        dados += "Curso: " + aluno.getCurso().getNome() + "\r\n";
-        dados += "CR: " + this.CR() + "\r\n";
-        dados += "Carga Horária Total: " + this.cargaHorariaTotal() + "\r\n";
-        dados += "Semestre|Natureza|Carga Horária|Nome da Disciplina|Nota|Resultado\r\n";
-        for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadasObrigatoria) {
-            dados += disciplinaCursada.getSemestre() + " - " +
+    public String imprimirTXT() {
+        this.disciplinaCursadasObrigatoria.sort();
+        StringBuilder dados = new StringBuilder("");
+        dados.append("Matricula: " + this.aluno.getMatricula() + "\r\n");
+        dados.append( "Nome: " + this.aluno.getNome() + "\r\n");
+        dados.append( "Curso: " + this.aluno.getCurso().getNome() + "\r\n");
+        dados.append( "CR: " + this.CR() + "\r\n");
+        dados.append( "Carga Horária Total: " + this.cargaHorariaTotal() + "\r\n");
+        dados.append("Semestre|Natureza|Carga Horária|Nome da Disciplina|Nota|Resultado\r\n");
+        dados.append(this.disciplinaCursadasObrigatoria.stream().map(disciplinaCursada ->
+            disciplinaCursada.getSemestre() + " - " +
                     disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
                     disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
                     disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
                     (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
-                    disciplinaCursada.getConceito().getTexto() + " ";
-            dados += "\r\n";
-        }
-        for (DisciplinaCursada disciplinaCursada : this.disciplinaCursadaOptativa) {
-            dados += "  - " +
-                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
-                    disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
-                    disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
-                    (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
-                    disciplinaCursada.getConceito().getTexto() + " ";
-            dados += "\r\n";
-        }
-        return dados;
+                    disciplinaCursada.getConceito().getTexto() + " \r\n"
+        ).collect(Collectors.joining("")));
+        dados.append( this.disciplinaCursadaOptativa.stream().map(disciplinaCursada ->
+                "  - " +
+                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getNomeDisciplina() + " - " +
+                        disciplinaCursada.getDisciplinaCurso().getNatureza().getTexto() + " " +
+                        disciplinaCursada.getDisciplinaCurso().getDisciplina().getCargaHoraria() + " " +
+                        (disciplinaCursada.getNota() != null ? disciplinaCursada.getNota() : "--") + " " +
+                        disciplinaCursada.getConceito().getTexto() + " \r\n"
+        ).collect(Collectors.joining("")));
+        return dados.toString();
     }
 
-    public String imprimirHTML(Aluno aluno) {
+    public String imprimirHTML() {
         Collections.sort(this.disciplinaCursadasObrigatoria);
         String htmlString = "";
         try {

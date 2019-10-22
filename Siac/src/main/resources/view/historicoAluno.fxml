@@ -26,6 +26,6 @@
         <HBox>
             <Button fx:id="imprimir" onAction="#imprimir" mnemonicParsing="false" text="Salvar Curriculo"/>
         </HBox>
-        <Label fx:id="successError"/>
+        <Label fx:id="successoErro"/>
     </VBox>
 </AnchorPane>

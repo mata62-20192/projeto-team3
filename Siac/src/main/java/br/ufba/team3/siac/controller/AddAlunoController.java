@@ -3,6 +3,7 @@ package br.ufba.team3.siac.controller;
 import br.ufba.team3.siac.Main;
 import br.ufba.team3.siac.model.Aluno;
 import br.ufba.team3.siac.model.Curso;
+import br.ufba.team3.siac.util.FormUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,10 +41,10 @@ public class AddAlunoController implements Initializable {
         }
     }
 
-    public void AdicionarAlunoNovo(ActionEvent actionEvent) {
+    public void adicionarAlunoNovo(ActionEvent actionEvent) {
         this.limparCss();
         this.successoErro.setText("");
-        if (!checagemDeErroDoForms()) {
+        if (ehFormValido()) {
             String codigo = this.cursos.getSelectionModel().getSelectedItem().split(" - ")[0];
             Curso cursoSelecionado = Main.getUniversidade().findCurso(codigo);
             String nome = this.nome.getText();
@@ -53,6 +54,8 @@ public class AddAlunoController implements Initializable {
             this.limparDados();
             this.cursos.getSelectionModel().clearSelection();
             this.successoErro.setText("O aluno foi adicionado com sucesso");
+        }else{
+            this.successoErro.setText("O aluno não foi adicionado com sucesso\n" + this.successoErro.getText());
         }
     }
 
@@ -77,37 +80,29 @@ public class AddAlunoController implements Initializable {
         this.cursos.getStyleClass().remove("error");
     }
 
-    private boolean checagemDeErroDoForms() {
-        boolean check = false;
+    private boolean ehFormValido() {
+        boolean check = true;
         if (nome.getText().trim().isEmpty()) {
-            this.nome.getStyleClass().add("error");
-            this.successoErro.setText(this.successoErro.getText() + "Nome não preenchido\n");
-            check = true;
+            FormUtil.setError(this.nome, this.successoErro, "Nome não preenchido");
+            check = false;
         }
         if (senha.getText().trim().isEmpty()) {
-            this.senha.getStyleClass().add("error");
-            this.successoErro.setText(this.successoErro.getText() + "Senha não preenchida\n");
-            check = true;
+            FormUtil.setError(this.senha, this.successoErro, "Senha não preenchida");
+            check = false;
         }
         if (matricula.getText().trim().isEmpty()) {
-            matricula.getStyleClass().add("error");
-            this.successoErro.setText(this.successoErro.getText() + "Matricula não preenchida\n");
-            check = true;
+            FormUtil.setError(this.matricula, this.successoErro, "Matricula não preenchida");
+            check = false;
         }
         if (cursos.getSelectionModel().getSelectedItem() == null) {
-            this.cursos.getStyleClass().add("error");
-            this.successoErro.setText(this.successoErro.getText() + "Curso não selecionado\n");
-            check = true;
+            FormUtil.setError(this.cursos, this.successoErro, "Curso não selecionado");
+            check = false;
         }
         if (Main.getUniversidade().findAluno(this.matricula.getText()) != null) {
-            this.cursos.getStyleClass().add("error");
-            this.successoErro.setText(this.successoErro.getText() + "Aluno já existe. Matricula repetida\n");
-            check = true;
+            FormUtil.setError(this.cursos, this.successoErro, "Aluno já existe. Matricula repetida");
+            check = false;
         }
-        if(check){
-            this.successoErro.setText("O aluno não foi adicionado com sucesso\n" + this.successoErro.getText());
-        }
+
         return check;
     }
-
 }

@@ -7,14 +7,17 @@ public class Aluno {
     private final String nome;
     private String senha;
     private final Curso curso;
-    private final Historico historico;
+    private Historico historico;
 
     public Aluno(String matricula, String nome, String senha, Curso curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.senha = senha;
         this.curso = curso;
-        this.historico = new Historico();
+    }
+
+    public void setHistorico(Historico historico) {
+        this.historico = historico;
     }
 
     public Curso getCurso() {

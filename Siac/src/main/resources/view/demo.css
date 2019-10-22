@@ -86,3 +86,7 @@
 .error Button {
     -fx-background-color: #ff1f00;
 }
+
+.error{
+    -fx-border-color: red;
+}

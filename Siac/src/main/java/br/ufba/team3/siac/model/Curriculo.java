@@ -4,7 +4,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 
-public final class Curriculo {
+public final class Curriculo implements Imprimir {
     private Curso curso;
 
     public Curriculo(Curso curso) {

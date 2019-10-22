@@ -2,17 +2,15 @@ package br.ufba.team3.siac.controller;
 
 import br.ufba.team3.siac.Main;
 import br.ufba.team3.siac.model.Aluno;
+import br.ufba.team3.siac.model.Imprimir;
+import br.ufba.team3.siac.util.FileUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.stage.FileChooser;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,7 +23,7 @@ public class HistoricoController implements Initializable {
     private Button imprimir;
 
     @FXML
-    private Label successError;
+    private Label successoErro;
 
 
     @Override
@@ -36,49 +34,20 @@ public class HistoricoController implements Initializable {
         }
     }
 
+
     @FXML
     public void imprimir(ActionEvent event) {
-        this.successError.setText("");
+        this.successoErro.setText("");
         this.alunos.getStyleClass().remove("error");
         if (this.alunos.getSelectionModel().getSelectedItem() == null) {
-            this.successError.setText("É preciso escolher um curso válido");
+            this.successoErro.setText("É preciso escolher um curso válido");
             this.alunos.getStyleClass().addAll("error");
         } else {
-            this.selecionadorDeArquivo();
-        }
-    }
-
-    private void selecionadorDeArquivo() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.txt")
-                , new FileChooser.ExtensionFilter("HTML Files", "*.html")
-        );
-        fileChooser.setInitialFileName("Historico");
-        File file = fileChooser.showSaveDialog(imprimir.getScene().getWindow());
-        if (file != null) {
-            SalvarArquivo(file);
-            this.successError.setText("O arquivo foi salvo com sucesso");
-            this.alunos.getStyleClass().remove("error");
-        }
-    }
-
-    private void SalvarArquivo(File arquivo) {
-        try {
-            String conteudo;
-            FileWriter leitorDeArquivo;
             String codigo = this.alunos.getSelectionModel().getSelectedItem().split(" - ")[0];
-            Aluno alunoSelecionado = Main.getUniversidade().findAluno(codigo);
-            if (arquivo.getAbsolutePath().contains(".html")) {
-                conteudo = alunoSelecionado.getHistorico().imprimirHTML(alunoSelecionado);
-            } else {
-                conteudo = alunoSelecionado.getHistorico().imprimirTXT(alunoSelecionado);
-            }
-            leitorDeArquivo = new FileWriter(arquivo);
-            leitorDeArquivo.write(conteudo);
-            leitorDeArquivo.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Imprimir curriculo = Main.getUniversidade().findAluno(codigo).getHistorico();
+
+            FileUtil.exportar("Curriculo", imprimir.getScene().getWindow(), this.successoErro, this.alunos, curriculo);
         }
     }
+
 }

@@ -32,7 +32,7 @@
             <TextField fx:id="matricula"/>
         </HBox>
         <HBox>
-            <Button fx:id="adicionarAlunoNovo" onAction="#AdicionarAlunoNovo" mnemonicParsing="false"
+            <Button fx:id="adicionarAlunoNovo" onAction="#adicionarAlunoNovo" mnemonicParsing="false"
                     text="Salvar"/>
             <Button fx:id="limparAdicaoAluno" onAction="#limparDadosCompleto" mnemonicParsing="false"
                     text="Limpar"/>
