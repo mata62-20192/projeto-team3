@@ -13,6 +13,18 @@ public class DisciplinaCursada implements Comparable<Object> {
         this.disciplinaCurso = disciplinaCurso;
     }
 
+    public void setConceito(Conceito conceito) {
+        this.conceito = conceito;
+        if(conceito != Conceito.APROVADO && conceito != Conceito.REPROVADOPORNOTA){
+            this.nota = null;
+        }
+    }
+
+    public void setConceitoNota(Conceito conceito, Double nota){
+        this.nota = nota;
+        this.setConceito(conceito);
+    }
+
     @Override
     public int compareTo(Object o) {
         DisciplinaCursada dc = (DisciplinaCursada) o;
@@ -31,16 +43,14 @@ public class DisciplinaCursada implements Comparable<Object> {
         return nota;
     }
 
-    public void setNota(Double nota) {
-        this.nota = nota;
-    }
 
     public Conceito getConceito() {
         return conceito;
     }
 
-    public void setConceito(Conceito conceito) {
-        this.conceito = conceito;
+
+    public void adicionarResultado(Conceito conceito, Double nota){
+
     }
 
     @Override
